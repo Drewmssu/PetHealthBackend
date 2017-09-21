@@ -1,16 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PetHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentId" />
+    </Key>
+    <Property Name="AppointmentId" Type="int" Nullable="false" />
+    <Property Name="VetId" Type="int" Nullable="false" />
+    <Property Name="VeterinaryId" Type="int" Nullable="false" />
+    <Property Name="ClinicalHistoryId" Type="int" Nullable="false" />
+    <Property Name="AppointmentDate" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="Prescription" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Channel">
+    <Key>
+      <PropertyRef Name="ChanelId" />
+    </Key>
+    <Property Name="ChanelId" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="VetId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClinicalHistory">
+    <Key>
+      <PropertyRef Name="ClinicalHistoryId" />
+    </Key>
+    <Property Name="ClinicalHistoryId" Type="int" Nullable="false" />
+    <Property Name="PetId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ContractId" />
+    </Key>
+    <Property Name="ContractId" Type="int" Nullable="false" />
+    <Property Name="VetId" Type="int" Nullable="false" />
+    <Property Name="VeterinaryId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="LastDateLogOn" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="LocationPhoto">
     <Key>
       <PropertyRef Name="LocationPhotoId" />
-      <PropertyRef Name="Photo" />
-      <PropertyRef Name="VeterinaryId" />
     </Key>
     <Property Name="LocationPhotoId" Type="int" Nullable="false" />
     <Property Name="Photo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="VeterinaryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="int" Nullable="false" />
+    <Property Name="CustomerSent" Type="bit" Nullable="false" />
+    <Property Name="Content" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ChanelId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Person">
     <Key>
@@ -22,6 +73,26 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
     <Property Name="DNI" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="PetId" />
+    </Key>
+    <Property Name="PetId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="Key" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SocialURL">
+    <Key>
+      <PropertyRef Name="SocialURLId" />
+    </Key>
+    <Property Name="SocialURLId" Type="int" Nullable="false" />
+    <Property Name="WebSiteURL" Type="varchar" MaxLength="200" />
+    <Property Name="YoutubeURL" Type="varchar" MaxLength="200" />
+    <Property Name="TwitterURL" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -57,6 +128,14 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
     <Property Name="Salt" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Creation" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Vet">
+    <Key>
+      <PropertyRef Name="VetId" />
+    </Key>
+    <Property Name="VetId" Type="int" Nullable="false" />
+    <Property Name="Linkedinlink" Type="varchar" MaxLength="100" />
+    <Property Name="Degree" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="Veterinary">
     <Key>
       <PropertyRef Name="VeterinaryId" />
@@ -69,6 +148,114 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
     <Property Name="OpeningHours" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="SocialURLId" Type="int" />
   </EntityType>
+  <Association Name="FK_Appointment_ClinicalHistory">
+    <End Role="ClinicalHistory" Type="Self.ClinicalHistory" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClinicalHistory">
+        <PropertyRef Name="ClinicalHistoryId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ClinicalHistoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Vet">
+    <End Role="Vet" Type="Self.Vet" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vet">
+        <PropertyRef Name="VetId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Veterinary">
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Channel_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Channel">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Channel_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Channel">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClinicalHistory_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+    <End Role="ClinicalHistory" Type="Self.ClinicalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetId" />
+      </Principal>
+      <Dependent Role="ClinicalHistory">
+        <PropertyRef Name="PetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Vet">
+    <End Role="Vet" Type="Self.Vet" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vet">
+        <PropertyRef Name="VetId" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Veterinary">
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_LocationPhoto_Veterinary">
     <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
     <End Role="LocationPhoto" Type="Self.LocationPhoto" Multiplicity="*" />
@@ -78,6 +265,18 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
       </Principal>
       <Dependent Role="LocationPhoto">
         <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Channel">
+    <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Channel">
+        <PropertyRef Name="ChanelId" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="ChanelId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -93,6 +292,18 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Pet_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Tip_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Tip" Type="Self.Tip" Multiplicity="*" />
@@ -102,6 +313,30 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
       </Principal>
       <Dependent Role="Tip">
         <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vet_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Vet" Type="Self.Vet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Vet">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Veterinary_SocialURL">
+    <End Role="SocialURL" Type="Self.SocialURL" Multiplicity="0..1" />
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialURL">
+        <PropertyRef Name="SocialURLId" />
+      </Principal>
+      <Dependent Role="Veterinary">
+        <PropertyRef Name="SocialURLId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -118,29 +353,84 @@ warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a pr
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="PetHealthModelStoreContainer">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Channel" EntityType="Self.Channel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClinicalHistory" EntityType="Self.ClinicalHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationPhoto" EntityType="Self.LocationPhoto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocialURL" EntityType="Self.SocialURL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tip" EntityType="Self.Tip" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vet" EntityType="Self.Vet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Veterinary" EntityType="Self.Veterinary" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocationPhoto" EntityType="Self.LocationPhoto" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [LocationPhoto].[LocationPhotoId] AS [LocationPhotoId], 
-    [LocationPhoto].[Photo] AS [Photo], 
-    [LocationPhoto].[VeterinaryId] AS [VeterinaryId]
-    FROM [dbo].[LocationPhoto] AS [LocationPhoto]</DefiningQuery>
-    </EntitySet>
+    <AssociationSet Name="FK_Appointment_ClinicalHistory" Association="Self.FK_Appointment_ClinicalHistory">
+      <End Role="ClinicalHistory" EntitySet="ClinicalHistory" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Vet" Association="Self.FK_Appointment_Vet">
+      <End Role="Vet" EntitySet="Vet" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Veterinary" Association="Self.FK_Appointment_Veterinary">
+      <End Role="Veterinary" EntitySet="Veterinary" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Channel_User" Association="Self.FK_Channel_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Channel" EntitySet="Channel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Channel_User1" Association="Self.FK_Channel_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Channel" EntitySet="Channel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClinicalHistory_Pet" Association="Self.FK_ClinicalHistory_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="ClinicalHistory" EntitySet="ClinicalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Vet" Association="Self.FK_Contract_Vet">
+      <End Role="Vet" EntitySet="Vet" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Veterinary" Association="Self.FK_Contract_Veterinary">
+      <End Role="Veterinary" EntitySet="Veterinary" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Person" Association="Self.FK_Customer_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
     <AssociationSet Name="FK_LocationPhoto_Veterinary" Association="Self.FK_LocationPhoto_Veterinary">
       <End Role="Veterinary" EntitySet="Veterinary" />
       <End Role="LocationPhoto" EntitySet="LocationPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Channel" Association="Self.FK_Message_Channel">
+      <End Role="Channel" EntitySet="Channel" />
+      <End Role="Message" EntitySet="Message" />
     </AssociationSet>
     <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
       <End Role="User" EntitySet="User" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
+    <AssociationSet Name="FK_Pet_Customer" Association="Self.FK_Pet_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
     <AssociationSet Name="FK_Tip_User" Association="Self.FK_Tip_User">
       <End Role="User" EntitySet="User" />
       <End Role="Tip" EntitySet="Tip" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vet_Person" Association="Self.FK_Vet_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Vet" EntitySet="Vet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Veterinary_SocialURL" Association="Self.FK_Veterinary_SocialURL">
+      <End Role="SocialURL" EntitySet="SocialURL" />
+      <End Role="Veterinary" EntitySet="Veterinary" />
     </AssociationSet>
     <AssociationSet Name="FK_Veterinary_User" Association="Self.FK_Veterinary_User">
       <End Role="User" EntitySet="User" />

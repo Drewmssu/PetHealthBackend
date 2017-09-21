@@ -5,16 +5,38 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="02ef30d1d04e403cb5936f65f8d2654a" Name="Diagram1">
-        <EntityTypeShape EntityType="PetHealthModel.Person" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetHealthModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetHealthModel.Tip" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetHealthModel.User" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetHealthModel.Veterinary" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetHealthModel.LocationPhoto" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="PetHealthModel.FK_Person_User" ManuallyRouted="false" />
-        <AssociationConnector Association="PetHealthModel.FK_Tip_User" ManuallyRouted="false" />
-        <AssociationConnector Association="PetHealthModel.FK_Veterinary_User" ManuallyRouted="false" />
-        <AssociationConnector Association="PetHealthModel.FK_LocationPhoto_Veterinary" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PetHealthModel.Appointment" Width="1.5" PointX="12" PointY="8.375" />
+        <EntityTypeShape EntityType="PetHealthModel.Channel" Width="1.5" PointX="3" PointY="17.125" />
+        <EntityTypeShape EntityType="PetHealthModel.ClinicalHistory" Width="1.5" PointX="9.75" PointY="7.25" />
+        <EntityTypeShape EntityType="PetHealthModel.Contract" Width="1.5" PointX="7.5" PointY="11.125" />
+        <EntityTypeShape EntityType="PetHealthModel.Customer" Width="1.5" PointX="5.25" PointY="7.125" />
+        <EntityTypeShape EntityType="PetHealthModel.LocationPhoto" Width="1.5" PointX="5.25" PointY="13.75" />
+        <EntityTypeShape EntityType="PetHealthModel.Message" Width="1.5" PointX="5.25" PointY="17.125" />
+        <EntityTypeShape EntityType="PetHealthModel.Person" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="PetHealthModel.Pet" Width="1.5" PointX="7.5" PointY="6.875" />
+        <EntityTypeShape EntityType="PetHealthModel.SocialURL" Width="1.5" PointX="0.75" PointY="12.625" />
+        <EntityTypeShape EntityType="PetHealthModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PetHealthModel.Tip" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="PetHealthModel.User" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PetHealthModel.Vet" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="PetHealthModel.Veterinary" Width="1.5" PointX="3" PointY="12" />
+        <AssociationConnector Association="PetHealthModel.FK_Appointment_ClinicalHistory" />
+        <AssociationConnector Association="PetHealthModel.FK_Appointment_Vet" />
+        <AssociationConnector Association="PetHealthModel.FK_Appointment_Veterinary" />
+        <AssociationConnector Association="PetHealthModel.FK_Channel_User" />
+        <AssociationConnector Association="PetHealthModel.FK_Channel_User1" />
+        <AssociationConnector Association="PetHealthModel.FK_Message_Channel" />
+        <AssociationConnector Association="PetHealthModel.FK_ClinicalHistory_Pet" />
+        <AssociationConnector Association="PetHealthModel.FK_Contract_Vet" />
+        <AssociationConnector Association="PetHealthModel.FK_Contract_Veterinary" />
+        <AssociationConnector Association="PetHealthModel.FK_Customer_Person" />
+        <AssociationConnector Association="PetHealthModel.FK_Pet_Customer" />
+        <AssociationConnector Association="PetHealthModel.FK_LocationPhoto_Veterinary" />
+        <AssociationConnector Association="PetHealthModel.FK_Person_User" />
+        <AssociationConnector Association="PetHealthModel.FK_Vet_Person" />
+        <AssociationConnector Association="PetHealthModel.FK_Veterinary_SocialURL" />
+        <AssociationConnector Association="PetHealthModel.FK_Tip_User" />
+        <AssociationConnector Association="PetHealthModel.FK_Veterinary_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

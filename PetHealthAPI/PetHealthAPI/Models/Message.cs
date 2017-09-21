@@ -12,17 +12,14 @@ namespace PetHealthAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class Message
     {
-        public int PersonId { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string DNI { get; set; }
-        public string Adress { get; set; }
-        public string Phone { get; set; }
+        public int MessageId { get; set; }
+        public bool CustomerSent { get; set; }
+        public string Content { get; set; }
+        public System.DateTime Date { get; set; }
+        public int ChanelId { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual User User { get; set; }
-        public virtual Vet Vet { get; set; }
+        public virtual Channel Channel { get; set; }
     }
 }

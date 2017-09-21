@@ -167,10 +167,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Hmac.cs" />
+    <Compile Include="Models\Appointment.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Channel.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClinicalHistory.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contract.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LocationPhoto.cs">
       <DependentUpon>PetHealthEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Message.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Person.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pet.cs">
       <DependentUpon>PetHealthEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PetHealthEntities.Context.cs">
@@ -188,6 +209,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PetHealthEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SocialURL.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>PetHealthEntities.tt</DependentUpon>
     </Compile>
@@ -195,6 +219,9 @@
       <DependentUpon>PetHealthEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>PetHealthEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vet.cs">
       <DependentUpon>PetHealthEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Veterinary.cs">

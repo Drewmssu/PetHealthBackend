@@ -12,33 +12,23 @@ namespace PetHealthAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Vet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Vet()
         {
-            this.Channel = new HashSet<Channel>();
-            this.Channel1 = new HashSet<Channel>();
-            this.Tip = new HashSet<Tip>();
+            this.Appointment = new HashSet<Appointment>();
+            this.Contract = new HashSet<Contract>();
         }
     
-        public int UserId { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Mail { get; set; }
-        public string Photo { get; set; }
-        public string Bio { get; set; }
-        public string Status { get; set; }
-        public string Salt { get; set; }
-        public System.DateTime Creation { get; set; }
+        public int VetId { get; set; }
+        public string Linkedinlink { get; set; }
+        public string Degree { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Channel> Channel { get; set; }
+        public virtual ICollection<Appointment> Appointment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Channel> Channel1 { get; set; }
+        public virtual ICollection<Contract> Contract { get; set; }
         public virtual Person Person { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tip> Tip { get; set; }
-        public virtual Veterinary Veterinary { get; set; }
     }
 }

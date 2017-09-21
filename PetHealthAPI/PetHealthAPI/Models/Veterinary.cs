@@ -17,6 +17,8 @@ namespace PetHealthAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Veterinary()
         {
+            this.Appointment = new HashSet<Appointment>();
+            this.Contract = new HashSet<Contract>();
             this.LocationPhoto = new HashSet<LocationPhoto>();
         }
     
@@ -28,8 +30,13 @@ namespace PetHealthAPI.Models
         public string OpeningHours { get; set; }
         public Nullable<int> SocialURLId { get; set; }
     
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract> Contract { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LocationPhoto> LocationPhoto { get; set; }
+        public virtual SocialURL SocialURL { get; set; }
+        public virtual User User { get; set; }
     }
 }

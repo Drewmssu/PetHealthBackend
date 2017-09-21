@@ -12,17 +12,15 @@ namespace PetHealthAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class Contract
     {
-        public int PersonId { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string DNI { get; set; }
-        public string Adress { get; set; }
-        public string Phone { get; set; }
+        public int ContractId { get; set; }
+        public int VetId { get; set; }
+        public int VeterinaryId { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.DateTime EndDate { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual User User { get; set; }
         public virtual Vet Vet { get; set; }
+        public virtual Veterinary Veterinary { get; set; }
     }
 }
