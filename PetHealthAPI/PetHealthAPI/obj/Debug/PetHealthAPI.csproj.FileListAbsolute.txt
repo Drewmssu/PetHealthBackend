@@ -1,0 +1,114 @@
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\ApplicationInsights.config
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\csc.exe
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\System.Collections.Immutable.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\vbc.exe
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\VBCSCompiler.exe
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\roslyn\VBCSCompiler.exe.config
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\PetHealthAPI.dll.config
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\PetHealthAPI.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\PetHealthAPI.pdb
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Antlr3.Runtime.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\EntityFramework.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\EntityFramework.SqlServer.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.Web.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.WindowsServer.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.ApplicationInsights.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.Web.Infrastructure.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Newtonsoft.Json.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Helpers.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Mvc.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Optimization.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Razor.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Deployment.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Razor.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\WebGrease.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\EntityFramework.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\EntityFramework.SqlServer.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.Web.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.WindowsServer.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.ApplicationInsights.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Helpers.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Mvc.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Optimization.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.Razor.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Deployment.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Razor.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Antlr3.Runtime.pdb
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\bin\Newtonsoft.Json.xml
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.csprojResolveAssemblyReference.cache
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.dll
+c:\users\usuario\documents\visual studio 2015\Projects\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.pdb
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\ApplicationInsights.config
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\csc.exe
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\System.Collections.Immutable.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\System.Reflection.Metadata.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\vbc.exe
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\VBCSCompiler.exe
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\roslyn\VBCSCompiler.exe.config
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\PetHealthAPI.dll.config
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\PetHealthAPI.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\PetHealthAPI.pdb
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Antlr3.Runtime.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\EntityFramework.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\EntityFramework.SqlServer.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.DependencyCollector.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.Web.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.WindowsServer.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.ApplicationInsights.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.Web.Infrastructure.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Newtonsoft.Json.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Helpers.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Mvc.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Optimization.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Razor.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Deployment.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Razor.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\WebGrease.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\EntityFramework.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\EntityFramework.SqlServer.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.DependencyCollector.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.Web.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.AI.WindowsServer.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.ApplicationInsights.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Helpers.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Mvc.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Optimization.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.Razor.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Deployment.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\System.Web.WebPages.Razor.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Antlr3.Runtime.pdb
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\bin\Newtonsoft.Json.xml
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.csprojResolveAssemblyReference.cache
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.dll
+D:\Gonzalo\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.pdb

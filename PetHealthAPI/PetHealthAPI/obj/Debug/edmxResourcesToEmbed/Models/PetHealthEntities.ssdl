@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_PetHealth.dbo.LocationPhoto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LocationPhoto">
+    <Key>
+      <PropertyRef Name="LocationPhotoId" />
+      <PropertyRef Name="Photo" />
+      <PropertyRef Name="VeterinaryId" />
+    </Key>
+    <Property Name="LocationPhotoId" Type="int" Nullable="false" />
+    <Property Name="Photo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="VeterinaryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DNI" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tip">
+    <Key>
+      <PropertyRef Name="TipId" />
+    </Key>
+    <Property Name="TipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="Image" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Photo" Type="varchar" MaxLength="150" />
+    <Property Name="Bio" Type="varchar" MaxLength="250" />
+    <Property Name="Status" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Salt" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Creation" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Veterinary">
+    <Key>
+      <PropertyRef Name="VeterinaryId" />
+    </Key>
+    <Property Name="VeterinaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PresentationVid" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="OpeningHours" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SocialURLId" Type="int" />
+  </EntityType>
+  <Association Name="FK_LocationPhoto_Veterinary">
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
+    <End Role="LocationPhoto" Type="Self.LocationPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Principal>
+      <Dependent Role="LocationPhoto">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tip_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tip" Type="Self.Tip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tip">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Veterinary_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PetHealthModelStoreContainer">
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tip" EntityType="Self.Tip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Veterinary" EntityType="Self.Veterinary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationPhoto" EntityType="Self.LocationPhoto" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LocationPhoto].[LocationPhotoId] AS [LocationPhotoId], 
+    [LocationPhoto].[Photo] AS [Photo], 
+    [LocationPhoto].[VeterinaryId] AS [VeterinaryId]
+    FROM [dbo].[LocationPhoto] AS [LocationPhoto]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_LocationPhoto_Veterinary" Association="Self.FK_LocationPhoto_Veterinary">
+      <End Role="Veterinary" EntitySet="Veterinary" />
+      <End Role="LocationPhoto" EntitySet="LocationPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tip_User" Association="Self.FK_Tip_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Tip" EntitySet="Tip" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Veterinary_User" Association="Self.FK_Veterinary_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Veterinary" EntitySet="Veterinary" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
