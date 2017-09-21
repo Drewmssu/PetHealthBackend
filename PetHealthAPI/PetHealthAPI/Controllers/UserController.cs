@@ -21,14 +21,14 @@ namespace PetHealthAPI.Controllers
         {
             var st = "password or username error";
             var UserLog = new Object();
-            var lstUser = context.User.Select(c=>new {
-                userId=c.UserId,
-                username=c.Username,
-                mail=c.Mail,
-                photo=c.Photo,
-                bio=c.Bio,
-                salt=c.Salt,
-                password=c.Password
+            var lstUser = context.User.Select(c => new {
+                userId = c.UserId,
+                username = c.Username,
+                mail = c.Mail,
+                photo = c.Photo,
+                bio = c.Bio,
+                salt = c.Salt,
+                password = c.Password
                 }).ToList();
             var UserAttempt = lstUser.FirstOrDefault(x => x.username == username);
             if (UserAttempt != null)
