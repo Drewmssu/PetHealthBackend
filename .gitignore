@@ -588,3 +588,6 @@ __pycache__/
 *.odx.cs
 
 *.xsd.cs
+
+#Configuration Visual
+*.config
