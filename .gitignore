@@ -10,14 +10,14 @@
 **/Models/
 /packages/
 
-PetHealthAPI/PetHealthAPI/Web.config
+/PetHealthAPI/PetHealthAPI/Web.config
 *.dll
 *pdb
 */Debug
 # User-specific files
 *ssdl
 
-*.suo
+**.suo
 
 *.user
 
