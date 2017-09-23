@@ -47,7 +47,7 @@ namespace PetHealthAPI.Controllers
         public JsonResult Register(RegisterViewModel json)
         {
             User newUser = new User();
-            var msg = "Username Already taken";
+            var msg = "error";
             if (context.User.FirstOrDefault(x => x.Username == json.username) == null)
             {
                 using (var trans = new TransactionScope())
@@ -63,10 +63,69 @@ namespace PetHealthAPI.Controllers
                     context.SaveChanges();
                     trans.Complete();
                 }
-                msg = "Done!";
-                //TODO: Verify if is a user, vet or veterinary who is registering
+                msg = "done";
             }
             return Json(new { message = msg, user = newUser}, JsonRequestBehavior.AllowGet);            
+        }
+        //TODO: Verify if is a user, vet or veterinary who is registering
+        private static void InitPerson(RegisterPersonObject json, Person newPerson)
+        {
+            newPerson.PersonId = json.UserId;
+            newPerson.Name = json.Name;
+            newPerson.LastName = json.LastName;
+            newPerson.DNI = json.DNI;
+            newPerson.Adress = json.Adress;
+            newPerson.Phone = json.Phone;
+        }
+
+        [HttpPost]
+        public JsonResult RegisterCustomer(RegisterCustomerObject json)
+        {
+            Person newPerson = new Person();
+            Customer newCustomer = new Customer();
+            var msg = "error";
+            if (context.User.Find(json.UserId) != null) 
+            {
+                using(var trans = new TransactionScope())
+                {
+                    InitPerson(json, newPerson);
+                    context.Person.Add(newPerson);
+                    context.SaveChanges();
+                    newCustomer.CustomerId = json.UserId;
+                    newCustomer.LastDateLogOn = DateTime.Now;
+                    newCustomer.Rating = 0;
+                    context.Customer.Add(newCustomer);
+                    context.SaveChanges();
+                    trans.Complete();
+                }
+                msg = "done";
+            }
+            return Json(new { message = msg, customer = newPerson }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult RegisterVet(RegisterVetObject json)
+        {
+            Person newPerson = new Person();
+            Vet newVet = new Vet();
+            var msg = "error";
+            if (context.User.Find(json.UserId) != null)
+            {
+                using (var trans = new TransactionScope()) 
+                {
+                    InitPerson(json, newPerson);
+                    context.Person.Add(newPerson);
+                    context.SaveChanges();
+                    newVet.VetId = json.UserId;
+                    newVet.Linkedinlink = json.LinkedinLink;
+                    newVet.Degree = json.Degree;
+                    context.Vet.Add(newVet);
+                    context.SaveChanges();
+                    trans.Complete();
+                }
+                msg = "done";
+            }
+            return Json(new { message = msg, vet = newVet }, JsonRequestBehavior.AllowGet);
         }
     }
 }
