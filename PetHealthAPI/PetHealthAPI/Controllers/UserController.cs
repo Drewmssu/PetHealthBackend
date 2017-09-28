@@ -91,7 +91,7 @@ namespace PetHealthAPI.Controllers
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newCustomer.CustomerId = json.UserId;
+                    newCustomer.CustomerId = context.Person.FirstOrDefault(x=>x.DNI==json.DNI).PersonId;
                     newCustomer.LastDateLogOn = DateTime.Now;
                     newCustomer.Rating = 0;
                     context.Customer.Add(newCustomer);
@@ -116,7 +116,7 @@ namespace PetHealthAPI.Controllers
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newVet.VetId = json.UserId;
+                    newVet.VetId = context.Person.FirstOrDefault(x => x.DNI == json.DNI).PersonId;
                     newVet.Linkedinlink = json.LinkedinLink;
                     newVet.Degree = json.Degree;
                     context.Vet.Add(newVet);
