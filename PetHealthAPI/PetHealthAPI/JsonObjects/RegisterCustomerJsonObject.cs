@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PetHealthAPI.ViewModel
 {
-    public class RegisterCustomerObject : RegisterPersonObject
+    public class RegisterCustomerJsonObject : RegisterPersonJsonObject
     {
         
     }

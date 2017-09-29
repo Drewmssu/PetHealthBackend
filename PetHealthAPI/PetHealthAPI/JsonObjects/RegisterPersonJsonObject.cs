@@ -6,19 +6,19 @@ using System.Web;
 
 namespace PetHealthAPI.ViewModel
 {
-    public class RegisterPersonObject
+    public class RegisterPersonJsonObject
     {
         [Required]
-        public int UserId { get; set; }
+        public int userId { get; set; }
         [MaxLength(100), MinLength(2)]
-        public String Name { get; set; }
+        public String name { get; set; }
         [MaxLength(100)]
-        public String LastName { get; set; }
+        public String lastName { get; set; }
         [MaxLength(10)]
-        public String DNI { get; set; }
+        public String dni { get; set; }
         [MaxLength(200)]
-        public String Adress { get; set; }
+        public String adress { get; set; }
         [Phone]
-        public String Phone { get; set; }
+        public String phone { get; set; }
     }
 }

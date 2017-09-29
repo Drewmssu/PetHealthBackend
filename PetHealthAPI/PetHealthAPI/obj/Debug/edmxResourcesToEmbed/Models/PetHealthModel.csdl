@@ -1,5 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PetHealthModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentId" />
+    </Key>
+    <Property Name="AppointmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VetId" Type="Int32" Nullable="false" />
+    <Property Name="VeterinaryId" Type="Int32" Nullable="false" />
+    <Property Name="ClinicalHistoryId" Type="Int32" Nullable="false" />
+    <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ClinicalHistory" Relationship="Self.FK_Appointment_ClinicalHistory" FromRole="Appointment" ToRole="ClinicalHistory" />
+    <NavigationProperty Name="Vet" Relationship="Self.FK_Appointment_Vet" FromRole="Appointment" ToRole="Vet" />
+    <NavigationProperty Name="Veterinary" Relationship="Self.FK_Appointment_Veterinary" FromRole="Appointment" ToRole="Veterinary" />
+  </EntityType>
+  <EntityType Name="Channel">
+    <Key>
+      <PropertyRef Name="ChanelId" />
+    </Key>
+    <Property Name="ChanelId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="VetId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Channel_User" FromRole="Channel" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Channel_User1" FromRole="Channel" ToRole="User" />
+    <NavigationProperty Name="Message" Relationship="Self.FK_Message_Channel" FromRole="Channel" ToRole="Message" />
+  </EntityType>
+  <EntityType Name="ClinicalHistory">
+    <Key>
+      <PropertyRef Name="ClinicalHistoryId" />
+    </Key>
+    <Property Name="ClinicalHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PetId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_ClinicalHistory" FromRole="ClinicalHistory" ToRole="Appointment" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_ClinicalHistory_Pet" FromRole="ClinicalHistory" ToRole="Pet" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ContractId" />
+    </Key>
+    <Property Name="ContractId" Type="Int32" Nullable="false" />
+    <Property Name="VetId" Type="Int32" Nullable="false" />
+    <Property Name="VeterinaryId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Vet" Relationship="Self.FK_Contract_Vet" FromRole="Contract" ToRole="Vet" />
+    <NavigationProperty Name="Veterinary" Relationship="Self.FK_Contract_Veterinary" FromRole="Contract" ToRole="Veterinary" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="LastDateLogOn" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_Customer_Person" FromRole="Customer" ToRole="Person" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_Pet_Customer" FromRole="Customer" ToRole="Pet" />
+  </EntityType>
+  <EntityType Name="LocationPhoto">
+    <Key>
+      <PropertyRef Name="LocationPhotoId" />
+    </Key>
+    <Property Name="LocationPhotoId" Type="Int32" Nullable="false" />
+    <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VeterinaryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Veterinary" Relationship="Self.FK_LocationPhoto_Veterinary" FromRole="LocationPhoto" ToRole="Veterinary" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerSent" Type="Boolean" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ChanelId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Channel" Relationship="Self.FK_Message_Channel" FromRole="Message" ToRole="Channel" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DNI" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Customer_Person" FromRole="Person" ToRole="Customer" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Person_User" FromRole="Person" ToRole="User" />
+    <NavigationProperty Name="Vet" Relationship="Self.FK_Vet_Person" FromRole="Person" ToRole="Vet" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="PetId" />
+    </Key>
+    <Property Name="PetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OwnerId" Type="Int32" Nullable="false" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Race" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ClinicalHistory" Relationship="Self.FK_ClinicalHistory_Pet" FromRole="Pet" ToRole="ClinicalHistory" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Pet_Customer" FromRole="Pet" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="SocialURL">
+    <Key>
+      <PropertyRef Name="SocialURLId" />
+    </Key>
+    <Property Name="SocialURLId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WebSiteURL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="YoutubeURL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TwitterURL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Veterinary" Relationship="Self.FK_Veterinary_SocialURL" FromRole="SocialURL" ToRole="Veterinary" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -34,8 +150,220 @@
     <Property Name="Status" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Salt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Creation" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Channel" Relationship="Self.FK_Channel_User" FromRole="User" ToRole="Channel" />
+    <NavigationProperty Name="Channel1" Relationship="Self.FK_Channel_User1" FromRole="User" ToRole="Channel" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_Person_User" FromRole="User" ToRole="Person" />
     <NavigationProperty Name="Tip" Relationship="Self.FK_Tip_User" FromRole="User" ToRole="Tip" />
+    <NavigationProperty Name="Veterinary" Relationship="Self.FK_Veterinary_User" FromRole="User" ToRole="Veterinary" />
   </EntityType>
+  <EntityType Name="Vet">
+    <Key>
+      <PropertyRef Name="VetId" />
+    </Key>
+    <Property Name="VetId" Type="Int32" Nullable="false" />
+    <Property Name="Linkedinlink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Degree" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_Vet" FromRole="Vet" ToRole="Appointment" />
+    <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Vet" FromRole="Vet" ToRole="Contract" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_Vet_Person" FromRole="Vet" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Veterinary">
+    <Key>
+      <PropertyRef Name="VeterinaryId" />
+    </Key>
+    <Property Name="VeterinaryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PresentationVid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OpeningHours" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SocialURLId" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Appointment_Veterinary" FromRole="Veterinary" ToRole="Appointment" />
+    <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Veterinary" FromRole="Veterinary" ToRole="Contract" />
+    <NavigationProperty Name="LocationPhoto" Relationship="Self.FK_LocationPhoto_Veterinary" FromRole="Veterinary" ToRole="LocationPhoto" />
+    <NavigationProperty Name="SocialURL" Relationship="Self.FK_Veterinary_SocialURL" FromRole="Veterinary" ToRole="SocialURL" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Veterinary_User" FromRole="Veterinary" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Appointment_ClinicalHistory">
+    <End Role="ClinicalHistory" Type="Self.ClinicalHistory" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClinicalHistory">
+        <PropertyRef Name="ClinicalHistoryId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ClinicalHistoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Vet">
+    <End Role="Vet" Type="Self.Vet" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vet">
+        <PropertyRef Name="VetId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appointment_Veterinary">
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Channel_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Channel">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Channel_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Channel">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Channel">
+    <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Channel">
+        <PropertyRef Name="ChanelId" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="ChanelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClinicalHistory_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+    <End Role="ClinicalHistory" Type="Self.ClinicalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetId" />
+      </Principal>
+      <Dependent Role="ClinicalHistory">
+        <PropertyRef Name="PetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Vet">
+    <End Role="Vet" Type="Self.Vet" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vet">
+        <PropertyRef Name="VetId" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Veterinary">
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationPhoto_Veterinary">
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="1" />
+    <End Role="LocationPhoto" Type="Self.LocationPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Principal>
+      <Dependent Role="LocationPhoto">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vet_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Vet" Type="Self.Vet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Vet">
+        <PropertyRef Name="VetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Veterinary_SocialURL">
+    <End Role="SocialURL" Type="Self.SocialURL" Multiplicity="0..1" />
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SocialURL">
+        <PropertyRef Name="SocialURLId" />
+      </Principal>
+      <Dependent Role="Veterinary">
+        <PropertyRef Name="SocialURLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Tip_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Tip" Type="Self.Tip" Multiplicity="*" />
@@ -48,13 +376,101 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Veterinary_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Veterinary" Type="Self.Veterinary" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Veterinary">
+        <PropertyRef Name="VeterinaryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PetHealthEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" />
+    <EntitySet Name="Channel" EntityType="Self.Channel" />
+    <EntitySet Name="ClinicalHistory" EntityType="Self.ClinicalHistory" />
+    <EntitySet Name="Contract" EntityType="Self.Contract" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="LocationPhoto" EntityType="Self.LocationPhoto" />
+    <EntitySet Name="Message" EntityType="Self.Message" />
+    <EntitySet Name="Person" EntityType="Self.Person" />
+    <EntitySet Name="Pet" EntityType="Self.Pet" />
+    <EntitySet Name="SocialURL" EntityType="Self.SocialURL" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Tip" EntityType="Self.Tip" />
     <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="Vet" EntityType="Self.Vet" />
+    <EntitySet Name="Veterinary" EntityType="Self.Veterinary" />
+    <AssociationSet Name="FK_Appointment_ClinicalHistory" Association="Self.FK_Appointment_ClinicalHistory">
+      <End Role="ClinicalHistory" EntitySet="ClinicalHistory" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Vet" Association="Self.FK_Appointment_Vet">
+      <End Role="Vet" EntitySet="Vet" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appointment_Veterinary" Association="Self.FK_Appointment_Veterinary">
+      <End Role="Veterinary" EntitySet="Veterinary" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Channel_User" Association="Self.FK_Channel_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Channel" EntitySet="Channel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Channel_User1" Association="Self.FK_Channel_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Channel" EntitySet="Channel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Channel" Association="Self.FK_Message_Channel">
+      <End Role="Channel" EntitySet="Channel" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClinicalHistory_Pet" Association="Self.FK_ClinicalHistory_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="ClinicalHistory" EntitySet="ClinicalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Vet" Association="Self.FK_Contract_Vet">
+      <End Role="Vet" EntitySet="Vet" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Veterinary" Association="Self.FK_Contract_Veterinary">
+      <End Role="Veterinary" EntitySet="Veterinary" />
+      <End Role="Contract" EntitySet="Contract" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Person" Association="Self.FK_Customer_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_Customer" Association="Self.FK_Pet_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationPhoto_Veterinary" Association="Self.FK_LocationPhoto_Veterinary">
+      <End Role="Veterinary" EntitySet="Veterinary" />
+      <End Role="LocationPhoto" EntitySet="LocationPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vet_Person" Association="Self.FK_Vet_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Vet" EntitySet="Vet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Veterinary_SocialURL" Association="Self.FK_Veterinary_SocialURL">
+      <End Role="SocialURL" EntitySet="SocialURL" />
+      <End Role="Veterinary" EntitySet="Veterinary" />
+    </AssociationSet>
     <AssociationSet Name="FK_Tip_User" Association="Self.FK_Tip_User">
       <End Role="User" EntitySet="User" />
       <End Role="Tip" EntitySet="Tip" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Veterinary_User" Association="Self.FK_Veterinary_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Veterinary" EntitySet="Veterinary" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -44,7 +44,7 @@ namespace PetHealthAPI.Controllers
             
         }
         [HttpPost]
-        public JsonResult Register(RegisterViewModel json)
+        public JsonResult Register(RegisterUserJsonObject json)
         {
             User newUser = new User();
             var msg = "error";
@@ -68,30 +68,30 @@ namespace PetHealthAPI.Controllers
             return Json(new { message = msg, user = newUser}, JsonRequestBehavior.AllowGet);            
         }
         //TODO: Verify if is a user, vet or veterinary who is registering
-        private static void InitPerson(RegisterPersonObject json, Person newPerson)
+        private static void InitPerson(RegisterPersonJsonObject json, Person newPerson)
         {
-            newPerson.PersonId = json.UserId;
-            newPerson.Name = json.Name;
-            newPerson.LastName = json.LastName;
-            newPerson.DNI = json.DNI;
-            newPerson.Adress = json.Adress;
-            newPerson.Phone = json.Phone;
+            newPerson.PersonId = json.userId;
+            newPerson.Name = json.name;
+            newPerson.LastName = json.lastName;
+            newPerson.DNI = json.dni;
+            newPerson.Adress = json.adress;
+            newPerson.Phone = json.phone;
         }
 
         [HttpPost]
-        public JsonResult RegisterCustomer(RegisterCustomerObject json)
+        public JsonResult RegisterCustomer(RegisterCustomerJsonObject json)
         {
             Person newPerson = new Person();
             Customer newCustomer = new Customer();
             var msg = "error";
-            if (context.User.Find(json.UserId) != null) 
+            if (context.User.Find(json.userId) != null) 
             {
                 using(var trans = new TransactionScope())
                 {
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newCustomer.CustomerId = context.Person.FirstOrDefault(x=>x.DNI==json.DNI).PersonId;
+                    newCustomer.CustomerId = context.Person.FirstOrDefault(x=>x.DNI==json.dni).PersonId;
                     newCustomer.LastDateLogOn = DateTime.Now;
                     newCustomer.Rating = 0;
                     context.Customer.Add(newCustomer);
@@ -104,21 +104,21 @@ namespace PetHealthAPI.Controllers
         }
 
         [HttpPost]
-        public JsonResult RegisterVet(RegisterVetObject json)
+        public JsonResult RegisterVet(RegisterVetJsonObject json)
         {
             Person newPerson = new Person();
             Vet newVet = new Vet();
             var msg = "error";
-            if (context.User.Find(json.UserId) != null)
+            if (context.User.Find(json.userId) != null)
             {
                 using (var trans = new TransactionScope()) 
                 {
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newVet.VetId = context.Person.FirstOrDefault(x => x.DNI == json.DNI).PersonId;
-                    newVet.Linkedinlink = json.LinkedinLink;
-                    newVet.Degree = json.Degree;
+                    newVet.VetId = context.Person.FirstOrDefault(x => x.DNI == json.dni).PersonId;
+                    newVet.Linkedinlink = json.linkedinLink;
+                    newVet.Degree = json.degree;
                     context.Vet.Add(newVet);
                     context.SaveChanges();
                     trans.Complete();

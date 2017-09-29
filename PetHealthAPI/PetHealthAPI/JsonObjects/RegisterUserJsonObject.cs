@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PetHealthAPI.ViewModel
 {
-    public class RegisterViewModel
+    public class RegisterUserJsonObject
     {
         public String username { get; set; }
         public String password { get; set; }
