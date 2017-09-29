@@ -10,16 +10,9 @@ namespace PetHealthAPI.Controllers
 {
     public class VetController : BaseController
     {
-        public JsonResult vets(Int32? vetId)
+        public JsonResult Vets(Int32? vetId)
         {
-            if (vetId.HasValue)
-            {
-                return Json(RegisterVetJsonObject.from(context.Vet.Where(x => x.VetId == vetId).ToList()), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(RegisterVetJsonObject.from(context.Vet.ToList()), JsonRequestBehavior.AllowGet);
-            }
+            return Json(vetId.HasValue ? RegisterVetJsonObject.@from(context.Vet.Where(x => x.VetId == vetId).ToList()) : RegisterVetJsonObject.@from(context.Vet.ToList()), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -165,6 +165,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PetController.cs" />
     <Compile Include="Controllers\VetController.cs" />
+    <Compile Include="Controllers\VeterinaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -300,6 +301,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Tip\" />
     <Folder Include="Views\User\" />
+    <Folder Include="Views\Veterinary\" />
     <Folder Include="Views\Vet\" />
   </ItemGroup>
   <ItemGroup>
