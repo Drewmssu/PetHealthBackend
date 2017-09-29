@@ -9,11 +9,11 @@ namespace PetHealthAPI.JsonObjects
 {
     public class AppointmentController : BaseController
     {
-        public JsonResult Appointments(Int32? appointmentId)
+        public JsonResult Appointments(Int32? veterinaryId)
         {
-            if (appointmentId.HasValue)
+            if (veterinaryId.HasValue)
             {
-                return Json(AppointmentJsonObject.from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()), JsonRequestBehavior.AllowGet);
+                return Json(AppointmentJsonObject.from(context.Appointment.Where(x => x.VeterinaryId == veterinaryId).ToList()), JsonRequestBehavior.AllowGet);
             }
             else
             {

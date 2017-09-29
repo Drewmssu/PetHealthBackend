@@ -10,11 +10,11 @@ namespace PetHealthAPI.Controllers
 {
     public class VetController : BaseController
     {
-        public JsonResult vets(Int32? vetId)
+        public JsonResult vets(Int32? veterinaryId)
         {
-            if (vetId.HasValue)
+            if (veterinaryId.HasValue)
             {
-                return Json(RegisterVetJsonObject.from(context.Vet.Where(x => x.VetId == vetId).ToList()), JsonRequestBehavior.AllowGet);
+                return Json(RegisterVetJsonObject.from(context.Vet.Where(x => x.VetId == veterinaryId).ToList()), JsonRequestBehavior.AllowGet);
             }
             else
             {
