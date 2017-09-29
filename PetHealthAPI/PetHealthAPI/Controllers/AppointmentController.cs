@@ -11,14 +11,7 @@ namespace PetHealthAPI.JsonObjects
     {
         public JsonResult Appointments(Int32? appointmentId)
         {
-            if (appointmentId.HasValue)
-            {
-                return Json(AppointmentJsonObject.from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(AppointmentJsonObject.from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
-            }
+            return Json(appointmentId.HasValue ? AppointmentJsonObject.@from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()) : AppointmentJsonObject.@from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
         }
     }
 }

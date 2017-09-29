@@ -20,7 +20,7 @@ namespace PetHealthAPI.Controllers
         public JsonResult LogIn(String username, String password)
         {
             var st = "password or username error";
-            var UserLog = new Object();
+            var userLog = new Object();
             var lstUser = context.User.Select(c => new {
                 userId = c.UserId,
                 username = c.Username,
@@ -30,23 +30,23 @@ namespace PetHealthAPI.Controllers
                 salt = c.Salt,
                 password = c.Password
                 }).ToList();
-            var UserAttempt = lstUser.FirstOrDefault(x => x.username == username);
-            if (UserAttempt != null)
+            var userAttempt = lstUser.FirstOrDefault(x => x.username == username);
+            if (userAttempt != null)
             {
-                var pss = Hmac.ComputeHMAC_SHA256_Password(password, UserAttempt.salt);
-                if (UserAttempt.password == pss)
+                var pss = Hmac.ComputeHMAC_SHA256_Password(password, userAttempt.salt);
+                if (userAttempt.password == pss)
                 {
                     st = "Success";
-                    UserLog = UserAttempt;
+                    userLog = userAttempt;
                 }
             }
-            return Json(new { message = st, userLog = UserLog}, JsonRequestBehavior.AllowGet);
+            return Json(new { message = st, userLog = userLog}, JsonRequestBehavior.AllowGet);
             
         }
         [HttpPost]
         public JsonResult Register(RegisterUserJsonObject json)
         {
-            User newUser = new User();
+            var newUser = new User();
             var msg = "error";
             if (context.User.FirstOrDefault(x => x.Username == json.username) == null)
             {
