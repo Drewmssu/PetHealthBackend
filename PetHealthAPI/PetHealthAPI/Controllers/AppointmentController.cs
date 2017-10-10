@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace PetHealthAPI.JsonObjects
 {
+    [RoutePrefix("appointment")]
     public class AppointmentController : BaseController
     {
         public JsonResult Appointments(Int32? veterinaryId)

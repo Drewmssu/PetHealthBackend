@@ -15,9 +15,5 @@ namespace PetHealthAPI.Controllers
         {
             context = new PetHealthEntities();
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
     }
 }

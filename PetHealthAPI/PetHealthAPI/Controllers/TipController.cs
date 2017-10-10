@@ -7,9 +7,10 @@ using System.Web.Mvc;
 
 namespace PetHealthAPI.Controllers
 {
+    [RoutePrefix("tip")]
     public class TipController : BaseController
     {
-        public JsonResult Tips()
+        public JsonResult tips()
         {
             var sts = "ok";
             var LstTips = context.Tip.Where(c=>c.Status=="ACT").Select(c=>new {

@@ -9,32 +9,11 @@ using System.Web.Mvc;
 
 namespace PetHealthAPI.Controllers
 {
+    [RoutePrefix("pet")]
     public class PetController : BaseController
     {
-        
-
-        public JsonResult Pets(Int32? OwnerId)
-        {
-            if (OwnerId.HasValue)
-            {
-                return Json(new
-                {
-                    status = "ok",
-                    content = PetJsonObject.from(context.Pet.Where(x => x.OwnerId == OwnerId).ToList())
-                },
-                JsonRequestBehavior.AllowGet);
-            }else
-            {
-                return Json(new
-                {
-                    status = "ok",
-                    content = PetJsonObject.from(context.Pet.ToList())
-                },
-            JsonRequestBehavior.AllowGet);
-            }
-        }
         [HttpPost]
-        public JsonResult AddPet(PetJsonObject petJsonObject)
+        public JsonResult addPet(PetJsonObject petJsonObject)
         {
             Pet newPet = new Pet();
             var msg = "error";

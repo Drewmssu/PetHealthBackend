@@ -13,6 +13,7 @@ using System.Web.Helpers;
 
 namespace PetHealthAPI.Controllers
 {
+    [RoutePrefix("user")]
     public class UserController : BaseController
     {
         //admin1 1234
@@ -126,6 +127,29 @@ namespace PetHealthAPI.Controllers
                 msg = "done";
             }
             return Json(new { message = msg, vet = newVet }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult pets(Int32? ownerId)
+        {
+            if (ownerId.HasValue)
+            {
+                return Json(new
+                {
+                    status = "ok",
+                    content = PetJsonObject.from(context.Pet.Where(x => x.OwnerId == ownerId).ToList())
+                },
+                JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    status = "ok",
+                    content = PetJsonObject.from(context.Pet.ToList())
+                },
+            JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

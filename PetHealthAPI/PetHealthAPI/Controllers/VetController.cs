@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace PetHealthAPI.Controllers
 {
     public class VetController : BaseController
-    {
+    { 
         public JsonResult vets(Int32? veterinaryId)
         {
             if (veterinaryId.HasValue)
@@ -22,4 +22,5 @@ namespace PetHealthAPI.Controllers
             }
         }
     }
+
 }
