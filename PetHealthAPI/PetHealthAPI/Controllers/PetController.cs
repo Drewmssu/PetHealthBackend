@@ -12,10 +12,31 @@ namespace PetHealthAPI.Controllers
     [RoutePrefix("pet")]
     public class PetController : BaseController
     {
+<<<<<<< HEAD
+=======
+        
+
+        public JsonResult Pets(Int32? ownerId)
+        {
+            return ownerId.HasValue
+                ? Json(data: new
+                    {
+                        status = "ok",
+                        content = PetJsonObject.@from(context.Pet.Where(x => x.OwnerId == ownerId).ToList())
+                    },
+                    behavior: JsonRequestBehavior.AllowGet)
+                : Json(new
+                    {
+                        status = "ok",
+                        content = PetJsonObject.@from(context.Pet.ToList())
+                    },
+                    JsonRequestBehavior.AllowGet);
+        }
+>>>>>>> 86f692402d2e5b0caaa6bb8c5f79ec5ae11a111e
         [HttpPost]
         public JsonResult addPet(PetJsonObject petJsonObject)
         {
-            Pet newPet = new Pet();
+            var newPet = new Pet();
             var msg = "error";
             try
             {
@@ -41,24 +62,23 @@ namespace PetHealthAPI.Controllers
                     msg = "success";
                 }
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
-                
+                // ignored
             }
             return Json(new { message=msg }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult delete(int petId)
+        public JsonResult Delete(int petId)
         {
             var msg = "error";
             var pet = context.Pet.Find(petId);
-            if ( pet != null)
+            if (pet == null) return Json(new {message = msg}, JsonRequestBehavior.AllowGet);
+            using (var trans = new TransactionScope())
             {
-                using (var trans = new TransactionScope())
-                {
-                    context.Pet.Remove(pet);
-                    msg = "success";
-                }
+                context.Pet.Remove(pet);
+                msg = "success";
             }
             return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
         }

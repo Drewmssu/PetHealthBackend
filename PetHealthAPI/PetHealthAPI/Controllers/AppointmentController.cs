@@ -12,6 +12,7 @@ namespace PetHealthAPI.JsonObjects
     {
         public JsonResult Appointments(Int32? veterinaryId)
         {
+<<<<<<< HEAD
             if (veterinaryId.HasValue)
             {
                 return Json(AppointmentJsonObject.from(context.Appointment.Where(x => x.VeterinaryId == veterinaryId).ToList()), JsonRequestBehavior.AllowGet);
@@ -20,6 +21,9 @@ namespace PetHealthAPI.JsonObjects
             {
                 return Json(AppointmentJsonObject.from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
             }
+=======
+            return Json(appointmentId.HasValue ? AppointmentJsonObject.@from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()) : AppointmentJsonObject.@from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
+>>>>>>> 86f692402d2e5b0caaa6bb8c5f79ec5ae11a111e
         }
     }
 }
