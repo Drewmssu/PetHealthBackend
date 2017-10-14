@@ -130,7 +130,7 @@ namespace PetHealthAPI.Controllers
         }
 
 
-        public JsonResult pets(Int32? ownerId)
+        public JsonResult Pets(Int32? ownerId)
         {
             if (ownerId.HasValue)
             {

@@ -11,7 +11,7 @@ namespace PetHealthAPI.JsonObjects
         public Int32? appointmentId { get; set; }
         public Int32 vetId { get; set; }
         public Int32 veterinaryId { get; set; }
-        public Int32 clinicalHistoryId { get; set; }
+        public Int32? petId { get; set; }
         public String date { get; set; }
         public String description { get; set; }
         public String prescription { get; set; }
@@ -22,7 +22,7 @@ namespace PetHealthAPI.JsonObjects
             apj.appointmentId = appointment.AppointmentId;
             apj.vetId = appointment.VetId;
             apj.veterinaryId = appointment.VeterinaryId;
-            apj.clinicalHistoryId = appointment.ClinicalHistoryId;
+            apj.petId = appointment.PetId;
             apj.date = appointment.AppointmentDate.ToString();
             apj.description = appointment.Description;
             apj.prescription = appointment.Prescription;

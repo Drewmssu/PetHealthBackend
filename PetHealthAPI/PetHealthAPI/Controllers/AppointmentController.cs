@@ -10,17 +10,27 @@ namespace PetHealthAPI.JsonObjects
     [RoutePrefix("appointment")]
     public class AppointmentController : BaseController
     {
-        public JsonResult Appointments(Int32? veterinaryId)
+        public JsonResult Appointments(Int32? petId)
         {
-            if (veterinaryId.HasValue)
+            if (petId.HasValue)
             {
-                return Json(AppointmentJsonObject.from(context.Appointment.Where(x => x.VeterinaryId == veterinaryId).ToList()), JsonRequestBehavior.AllowGet);
+                return Json(new
+                    {
+                        status = "ok",
+                        content = AppointmentJsonObject.from(context.Appointment.Where(x => x.PetId == petId).ToList())
+                    }, JsonRequestBehavior.AllowGet
+                );
             }
             else
             {
-                return Json(AppointmentJsonObject.from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
+                return Json(new
+                    {
+                        status = "ok",
+                        content = AppointmentJsonObject.from(context.Appointment.ToList())
+                    }, JsonRequestBehavior.AllowGet
+                );
             }
-            return Json(appointmentId.HasValue ? AppointmentJsonObject.@from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()) : AppointmentJsonObject.@from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
+            //return Json(appointmentId.HasValue ? AppointmentJsonObject.@from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()) : AppointmentJsonObject.@from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
         }
     }
 }

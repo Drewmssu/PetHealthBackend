@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace PetHealthAPI.Controllers
 {
-    [RoutePrefix("tip")]
     public class TipController : BaseController
     {
         public JsonResult tips()
@@ -20,7 +19,7 @@ namespace PetHealthAPI.Controllers
                 Image = c.Image 
                 }).ToList();
             if (lstTips.Count == 0) sts = "error";
-            return Json(new { status=sts, tips=lstTips}, JsonRequestBehavior.AllowGet);
+            return Json(new { status=sts, content=lstTips}, JsonRequestBehavior.AllowGet);
         }
         
     }
