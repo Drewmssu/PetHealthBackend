@@ -12,10 +12,6 @@ namespace PetHealthAPI.Controllers
     [RoutePrefix("pet")]
     public class PetController : BaseController
     {
-<<<<<<< HEAD
-=======
-        
-
         public JsonResult Pets(Int32? ownerId)
         {
             return ownerId.HasValue
@@ -32,7 +28,6 @@ namespace PetHealthAPI.Controllers
                     },
                     JsonRequestBehavior.AllowGet);
         }
->>>>>>> 86f692402d2e5b0caaa6bb8c5f79ec5ae11a111e
         [HttpPost]
         public JsonResult addPet(PetJsonObject petJsonObject)
         {
