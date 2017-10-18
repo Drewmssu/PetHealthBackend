@@ -9,10 +9,10 @@ namespace PetHealthAPI.Controllers
 {
     public class TipController : BaseController
     {
-        public JsonResult tips()
+        public JsonResult Tips()
         {
             var sts = "ok";
-            var lstTips = context.Tip.Where(c=>c.Status=="ACT").Select(c=>new {
+            var lstTips = context.Tip.Where(c=>c.Status=="ACT").Select(c => new {
                 TipId = c.TipId,
                 OwnerId = c.OwnerId,
                 Content = c.Content,

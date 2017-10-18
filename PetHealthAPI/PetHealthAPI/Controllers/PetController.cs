@@ -68,14 +68,14 @@ namespace PetHealthAPI.Controllers
             return Json(new { message=msg }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult Delete(int petId)
+        public JsonResult Delete(Int32 petId)
         {
             var msg = "error";
             var pet = context.Pet.Find(petId);
             if (pet == null) return Json(new {message = msg}, JsonRequestBehavior.AllowGet);
             using (var trans = new TransactionScope())
             {
-                context.Pet.Remove(pet);
+                context.Pet.Find(petId).Status = "INA";
                 msg = "success";
             }
             return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
