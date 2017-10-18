@@ -29,7 +29,7 @@ namespace PetHealthAPI.Controllers
                     JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult addPet(PetJsonObject petJsonObject)
+        public JsonResult AddPet(PetJsonObject petJsonObject)
         {
             var newPet = new Pet();
             var msg = "error";
@@ -45,13 +45,16 @@ namespace PetHealthAPI.Controllers
                     {
                         newPet = context.Pet.Find(petJsonObject.petId);
                     }
-                    newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
-                    newPet.Description = petJsonObject.description;
-                    newPet.Key = petJsonObject.key;
-                    newPet.Name = petJsonObject.name;
-                    newPet.OwnerId = petJsonObject.ownerId;
-                    newPet.Race = petJsonObject.race;
-                    newPet.Status = petJsonObject.status;
+                    if (newPet != null)
+                    {
+                        newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
+                        newPet.Description = petJsonObject.description;
+                        newPet.Key = petJsonObject.key;
+                        newPet.Name = petJsonObject.name;
+                        newPet.OwnerId = petJsonObject.ownerId;
+                        newPet.Race = petJsonObject.race;
+                        newPet.Status = petJsonObject.status;
+                    }
                     context.SaveChanges();
                     trans.Complete();
                     msg = "success";

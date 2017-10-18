@@ -13,18 +13,59 @@ namespace PetHealthAPI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //returns pets
-            routes.MapRoute(
-                "UserPets",
-                "user/pets/{ownerId}",
-                new { controller = "User", action = "Pets" }
-            );
+            //--USER CONTROLLER--
+
             //login
             routes.MapRoute(
                 "LogIn",
                 "user/login",
                 new { controller = "User", action = "LogIn" }
             );
+
+            //register user
+
+            routes.MapRoute(
+                "UserRegister",
+                "user/register",
+                new {controller = "User", action = "Register"}
+            );
+
+            //register customer
+
+            routes.MapRoute(
+                "UserRegisterCustomer",
+                "user/registerCustomer",
+                new {controller = "User", action = "RegisterCustomer"}
+            );
+
+            //register vet
+
+            routes.MapRoute(
+                "UserRegisterVet",
+                "user/registerVet",
+                new {controller = "User", action = "RegisterVet"}
+            );
+
+            //returns pets
+            routes.MapRoute(
+                "UserPets",
+                "user/pets/{ownerId}",
+                new { controller = "User", action = "Pets" }
+            );
+            
+            //--PET CONTROLLER--
+
+            //return pets
+
+            
+
+            //add pets
+            routes.MapRoute(
+                "PetsAdd",
+                "pets/add",
+                new {controller = "Pet", action = "AddPet"}
+            );
+           
             //appointments (petsid if needed)
             routes.MapRoute(
                 "PetsAppointment",
