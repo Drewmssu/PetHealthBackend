@@ -13,39 +13,39 @@ namespace PetHealthAPI
 
             //login
             routes.MapRoute(
-                "LogIn",
-                "user/login",
+                name: "LogIn",
+                url: "user/login",
                 defaults: new { controller = "User", action = "LogIn" }
             );
 
             //register user
 
             routes.MapRoute(
-                "UserRegister",
-                "user/register",
+                name: "UserRegister",
+                url: "user/register",
                 defaults: new {controller = "User", action = "Register"}
             );
 
             //register customer
 
             routes.MapRoute(
-                "UserRegisterCustomer",
-                "user/registerCustomer",
+                name: "UserRegisterCustomer",
+                url: "user/registerCustomer",
                 defaults: new {controller = "User", action = "RegisterCustomer"}
             );
 
             //register vet
 
             routes.MapRoute(
-                "UserRegisterVet",
-                "user/registerVet",
+                name: "UserRegisterVet",
+                url: "user/registerVet",
                 defaults: new {controller = "User", action = "RegisterVet"}
             );
 
             //returns pets
             routes.MapRoute(
-                "UserPets",
-                "user/pets/{ownerId}",
+                name: "UserPets",
+                url: "user/pets/{ownerId}",
                 defaults: new { controller = "User", action = "Pets" }
             );
 
@@ -54,33 +54,33 @@ namespace PetHealthAPI
             //return pets
 
             routes.MapRoute(
-                "PetPets",
-                "pet/pets/{ownerId}",
+                name: "PetPets",
+                url: "pet/pets/{ownerId}",
                 defaults: new { controller = "Pet", action = "Pets" }
             );
 
             //add pets
             routes.MapRoute(
-                "PetAdd",
-                "pet/add",
-                new {controller = "Pet", action = "AddPet"}
+                name: "PetAdd",
+                url: "pet/add",
+                defaults: new {controller = "Pet", action = "AddPet"}
             );
 
             //delete pet
 
             routes.MapRoute(
-                "PetDelete",
-                "pet/delete/{petId}",
-                new {controller = "Pet", action = "Delete"}
+                name: "PetDelete",
+                url: "pet/delete/{petId}",
+                defaults: new {controller = "Pet", action = "Delete"}
             );
 
             //-------------------- TIP CONTROLLER --------------------------//
 
             //tips
             routes.MapRoute(
-                "Tips",
-                "tips/",
-                new { controller = "Tip", action = "tips" }
+                name: "Tips",
+                url: "tips/",
+                defaults: new { controller = "Tip", action = "tips" }
             );
 
             //---------------------- VET CONTROLLER ------------------------//
@@ -88,34 +88,28 @@ namespace PetHealthAPI
             //veterinaries
 
             routes.MapRoute(
-                "Veterinaries",
-                "vet/veterinaries/{veterinaryId}",
-                new {controller = "Vet", action = "Veterinaries"}
+                name: "Veterinaries",
+                url: "vet/veterinaries/{veterinaryId}",
+                defaults: new {controller = "Vet", action = "Veterinaries"}
             );
 
             //vets 
 
             routes.MapRoute(
-                "Vets",
-                "vet/vets/{vetId}",
-                new {controller = "Vet", action = "Vets"}
+                name: "Vets",
+                url: "vets/{vetId}",
+                defaults: new {controller = "Vet", action = "Vets"}
             );
 
             //------------------ APPOINTMENT CONTROLLER ------------------//
 
             //appointments (petsid if needed)
             routes.MapRoute(
-                "PetsAppointment",
-                "pets/appointments",
-                new { controller = "Appointment", action = "Appointments" }
+                name: "PetsAppointment",
+                url: "pets/appointments",
+                defaults: new { controller = "Appointment", action = "Appointments" }
             );
             //----
-            ////vets 
-            //routes.MapRoute(
-            //    "Vets",
-            //    "vets/",
-            //    new { controller = "Vet", action = "vets" }
-            //);
 
             //default
             routes.MapRoute(
