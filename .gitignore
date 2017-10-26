@@ -9,7 +9,7 @@
 
 **/Models/
 /packages/
-
+/PetHealthAPI/PetHealthAPI/PetHealthAPI/Properties/PublishProfiles/
 /PetHealthAPI/PetHealthAPI/Web.config
 *.dll
 *pdb
