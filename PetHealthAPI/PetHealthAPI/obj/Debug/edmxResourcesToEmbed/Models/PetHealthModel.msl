@@ -7,10 +7,10 @@
           <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
           <ScalarProperty Name="VetId" ColumnName="VetId" />
           <ScalarProperty Name="VeterinaryId" ColumnName="VeterinaryId" />
+          <ScalarProperty Name="PetId" ColumnName="PetId" />
           <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Prescription" ColumnName="Prescription" />
-          <ScalarProperty Name="PetId" ColumnName="PetId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -26,7 +26,7 @@
     <EntitySetMapping Name="ClinicalHistory">
       <EntityTypeMapping TypeName="PetHealthModel.ClinicalHistory">
         <MappingFragment StoreEntitySet="ClinicalHistory">
-          <ScalarProperty Name="ClinicalistoryId" ColumnName="ClinicalistoryId" />
+          <ScalarProperty Name="ClinicalHistoryId" ColumnName="ClinicalHistoryId" />
           <ScalarProperty Name="PetId" ColumnName="PetId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -92,8 +92,8 @@
           <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
           <ScalarProperty Name="Key" ColumnName="Key" />
           <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Race" ColumnName="Race" />
           <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="race" ColumnName="race" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

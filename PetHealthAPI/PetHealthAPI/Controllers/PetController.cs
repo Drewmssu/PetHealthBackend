@@ -50,7 +50,7 @@ namespace PetHealthAPI.Controllers
                     newPet.Key = petJsonObject.key;
                     newPet.Name = petJsonObject.name;
                     newPet.OwnerId = petJsonObject.ownerId;
-                    newPet.Race = petJsonObject.race;
+                    newPet.race = petJsonObject.race;
                     newPet.Status = petJsonObject.status;
                     context.SaveChanges();
                     trans.Complete();

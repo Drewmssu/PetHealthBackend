@@ -17,11 +17,12 @@ namespace PetHealthAPI.Models
         public int AppointmentId { get; set; }
         public int VetId { get; set; }
         public int VeterinaryId { get; set; }
+        public int PetId { get; set; }
         public System.DateTime AppointmentDate { get; set; }
         public string Description { get; set; }
         public string Prescription { get; set; }
-        public Nullable<int> PetId { get; set; }
     
+        public virtual ClinicalHistory ClinicalHistory { get; set; }
         public virtual Pet Pet { get; set; }
         public virtual Vet Vet { get; set; }
         public virtual Veterinary Veterinary { get; set; }

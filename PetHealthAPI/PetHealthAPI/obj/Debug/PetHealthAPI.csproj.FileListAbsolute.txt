@@ -226,3 +226,5 @@ D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\bin\Newtonsoft.Json.xml
 D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.csprojResolveAssemblyReference.cache
 D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.dll
 D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.pdb
+D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.Properties.Resources.resources
+D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.csproj.GenerateResource.Cache

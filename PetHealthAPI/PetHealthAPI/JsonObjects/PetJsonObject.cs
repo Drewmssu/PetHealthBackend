@@ -33,7 +33,7 @@ namespace PetHealthAPI.ViewModel
             plo.ownerId = pet.OwnerId;
             plo.key = pet.Key;
             plo.birthDate = Convert.ToString(pet.BirthDate);
-            plo.race = pet.Race;
+            plo.race = pet.race;
             plo.status = pet.Status;
             return plo;
         }

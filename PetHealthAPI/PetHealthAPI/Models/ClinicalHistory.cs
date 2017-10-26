@@ -14,9 +14,17 @@ namespace PetHealthAPI.Models
     
     public partial class ClinicalHistory
     {
-        public int ClinicalistoryId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ClinicalHistory()
+        {
+            this.Appointment = new HashSet<Appointment>();
+        }
+    
+        public int ClinicalHistoryId { get; set; }
         public int PetId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointment { get; set; }
         public virtual Pet Pet { get; set; }
     }
 }
