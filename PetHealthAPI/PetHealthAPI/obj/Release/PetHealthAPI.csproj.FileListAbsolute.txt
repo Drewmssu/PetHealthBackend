@@ -57,4 +57,3 @@ D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Release\PetHealthAPI.d
 D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Release\PetHealthAPI.pdb
 D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Release\PetHealthAPI.Properties.Resources.resources
 D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Release\PetHealthAPI.csproj.GenerateResource.Cache
-D:\Gonzalo\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Release\PetHealthAPI.csproj.CoreCompileInputs.cache

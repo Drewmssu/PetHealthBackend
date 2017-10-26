@@ -45,15 +45,6 @@ namespace PetHealthAPI.Controllers
                     {
                         newPet = context.Pet.Find(petJsonObject.petId);
                     }
-<<<<<<< HEAD
-                    newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
-                    newPet.Description = petJsonObject.description;
-                    newPet.Key = petJsonObject.key;
-                    newPet.Name = petJsonObject.name;
-                    newPet.OwnerId = petJsonObject.ownerId;
-                    newPet.race = petJsonObject.race;
-                    newPet.Status = petJsonObject.status;
-=======
                     if (newPet != null)
                     {
                         newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
@@ -61,10 +52,9 @@ namespace PetHealthAPI.Controllers
                         newPet.Key = petJsonObject.key;
                         newPet.Name = petJsonObject.name;
                         newPet.OwnerId = petJsonObject.ownerId;
-                        newPet.Race = petJsonObject.race;
+                        newPet.race = petJsonObject.race;
                         newPet.Status = petJsonObject.status;
                     }
->>>>>>> cba8dde225e1cb14e11ef3c6179e1ffff77e0d7f
                     context.SaveChanges();
                     trans.Complete();
                     msg = "success";

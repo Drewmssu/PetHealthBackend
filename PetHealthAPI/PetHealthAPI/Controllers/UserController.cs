@@ -10,6 +10,7 @@ using System.Text;
 using PetHealthAPI.Helpers;
 using PetHealthAPI.Models;
 using System.Web.Helpers;
+using PetHealthAPI.JsonObjects;
 
 namespace PetHealthAPI.Controllers
 {
@@ -41,7 +42,7 @@ namespace PetHealthAPI.Controllers
                     userLog = userAttempt;
                 }
             }
-            return Json(new { message = st, userLog = userLog}, JsonRequestBehavior.AllowGet);
+            return Json(new { status = st, userLog = userLog}, JsonRequestBehavior.AllowGet);
             
         }
         [HttpPost]
@@ -66,7 +67,7 @@ namespace PetHealthAPI.Controllers
                 }
                 msg = "done";
             }
-            return Json(new { message = msg, user = newUser}, JsonRequestBehavior.AllowGet);            
+            return Json(new { status = msg, user = newUser}, JsonRequestBehavior.AllowGet);            
         }
         //TODO: Verify if is a user, vet or veterinary who is registering
         private static void InitPerson(RegisterPersonJsonObject json, Person newPerson)
@@ -101,7 +102,7 @@ namespace PetHealthAPI.Controllers
                 }
                 msg = "done";
             }
-            return Json(new { message = msg, customer = newPerson }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = msg, customer = newPerson }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -126,10 +127,31 @@ namespace PetHealthAPI.Controllers
                 }
                 msg = "done";
             }
-            return Json(new { message = msg, vet = newVet }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = msg, vet = newVet }, JsonRequestBehavior.AllowGet);
         }
 
-
+        public JsonResult RegisterVeterinary(VeterinaryJsonObject json)
+        {
+            var newVeterinary = new Veterinary();
+            var msg = "error";
+            if (context.User.Find(json.VeterinaryId) != null)
+            {
+                using(var trans=new TransactionScope())
+                {
+                    newVeterinary.VeterinaryId = json.VeterinaryId;
+                    newVeterinary.Name = json.Name;
+                    newVeterinary.PresentationVid = json.DescripVid;
+                    newVeterinary.PhoneNumber = json.PhoneNumber;
+                    newVeterinary.Location = json.Location;
+                    newVeterinary.OpeningHours = json.OpeningHours;
+                    context.Veterinary.Add(newVeterinary);
+                    context.SaveChanges();
+                    trans.Complete();
+                }
+                msg = "done";
+            }
+            return Json(new { status = msg, veterinary = newVeterinary }, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult Pets(Int32? ownerId)
         {
             if (ownerId.HasValue)

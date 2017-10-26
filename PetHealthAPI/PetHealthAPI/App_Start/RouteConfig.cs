@@ -42,6 +42,14 @@ namespace PetHealthAPI
                 defaults: new {controller = "User", action = "RegisterVet"}
             );
 
+            //register veterinary
+
+            routes.MapRoute(
+                name: "UserRegisterVeterinary",
+                url: "user/registerVeterinary",
+                defaults: new { controller = "User", action = "RegisterVeterinary" }
+            );
+
             //returns pets
             routes.MapRoute(
                 name: "UserPets",
