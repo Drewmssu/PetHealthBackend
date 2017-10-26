@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PetHealthAPI.JsonObjects
 {
-    public class VeterinaryJsonObject
+    public class RegisterVeterinaryJsonObject
     {
         public Int32 VeterinaryId { get; set; }
         public String Name { get; set; }

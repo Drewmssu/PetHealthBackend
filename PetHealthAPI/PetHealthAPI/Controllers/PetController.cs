@@ -44,6 +44,7 @@ namespace PetHealthAPI.Controllers
                     else
                     {
                         newPet = context.Pet.Find(petJsonObject.petId);
+                        
                     }
                     if (newPet != null)
                     {

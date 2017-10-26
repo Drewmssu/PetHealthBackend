@@ -1,7 +1,9 @@
-﻿using PetHealthAPI.Models;
+﻿using PetHealthAPI.JsonObjects;
+using PetHealthAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,6 +22,46 @@ namespace PetHealthAPI.Controllers
                 }).ToList();
             if (lstTips.Count == 0) sts = "error";
             return Json(new { status=sts, content=lstTips}, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult AddTips(TipJsonObject json)
+        {
+            var sts = "ok";
+
+            var tip = new Tip();
+            if (json.TipId.HasValue)
+            {
+                tip = context.Tip.Find(json.TipId);
+            }else
+            {
+                context.Tip.Add(tip);
+            }
+            using (var trans = new TransactionScope())
+            {
+                tip.Content = json.Content;
+                tip.OwnerId = json.OwnerId;
+                tip.Image = json.Image;
+                tip.Status = "ACT";
+                context.SaveChanges();
+                trans.Complete();
+            }
+            return Json(new { status = sts, tip = tip }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteTip(Int32 tipId)
+        {
+            var status = "ok";
+            var tipmod = context.Tip.Find(tipId);
+            if (tipmod != null)
+            {
+                using(var trans =new TransactionScope())
+                {
+                    tipmod.Status = "INA";
+                    context.SaveChanges();
+                    trans.Complete();
+                }
+            }
+            return Json(new { status = status, tip = tipmod }, JsonRequestBehavior.AllowGet);
         }
         
     }

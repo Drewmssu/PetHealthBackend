@@ -1,4 +1,5 @@
 ﻿using PetHealthAPI.JsonObjects;
+using PetHealthAPI.Models;
 using PetHealthAPI.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,31 @@ namespace PetHealthAPI.Controllers
     {
         public JsonResult Veterinaries(Int32? veterinaryId)
         {
-            return Json(data: veterinaryId.HasValue ? 
-                        RegisterVetJsonObject.@from(context.Vet.Where(x => x.VetId == veterinaryId).ToList()) : 
-                        RegisterVetJsonObject.@from(context.Vet.ToList()), behavior: JsonRequestBehavior.AllowGet);
+            var sts = "ok";
+            List<Vet> vets;
+            if (veterinaryId.HasValue)
+            {
+                vets = context.Contract
+                    .Where(x => x.VeterinaryId == Convert.ToInt32(veterinaryId) && DateTime.Now >= x.StartDate && DateTime.Now < x.EndDate)
+                    .Select(x => x.Vet)
+                    .ToList();
+            }else
+            {
+                vets = context.Vet.ToList();
+            }
+            return Json(new { status = sts, vets=vets},JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Vets(Int32? vetId) => Json(data: vetId.HasValue ? 
-                                                    RegisterVetJsonObject.@from(context.Vet.Where(x => x.VetId == vetId).ToList()) : 
-                                                    RegisterVetJsonObject.@from(context.Vet.ToList()), behavior: JsonRequestBehavior.AllowGet);
+        public JsonResult Vets(Int32 vetId)
+        {
+            var sts = "ok";
+            var vet = context.Vet.Find(vetId);
+            if (vet == null)
+            {
+                sts = "error: vet not found";
+            }
+            return Json(new { status = sts, vet = vet });
+        }
     }
 
 }

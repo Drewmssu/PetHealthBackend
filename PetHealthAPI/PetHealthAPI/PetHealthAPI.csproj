@@ -184,7 +184,8 @@
     <Compile Include="Helpers\Hmac.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="JsonObjects\AppointmentJsonObject.cs" />
-    <Compile Include="JsonObjects\VeterinaryJsonObject.cs" />
+    <Compile Include="JsonObjects\RegisterVeterinaryJsonObject.cs" />
+    <Compile Include="JsonObjects\TipJsonObject.cs" />
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>PetHealthModel.tt</DependentUpon>
     </Compile>

@@ -130,7 +130,7 @@ namespace PetHealthAPI.Controllers
             return Json(new { status = msg, vet = newVet }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult RegisterVeterinary(VeterinaryJsonObject json)
+        public JsonResult RegisterVeterinary(RegisterVeterinaryJsonObject json)
         {
             var newVeterinary = new Veterinary();
             var msg = "error";
