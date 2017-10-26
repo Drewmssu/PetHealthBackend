@@ -82,8 +82,8 @@ namespace PetHealthAPI.Controllers
         [HttpPost]
         public JsonResult RegisterCustomer(RegisterCustomerJsonObject json)
         {
-            Person newPerson = new Person();
-            Customer newCustomer = new Customer();
+            var newPerson = new Person();
+            var newCustomer = new Customer();
             var msg = "error";
             if (context.User.Find(json.userId) != null) 
             {
@@ -107,8 +107,8 @@ namespace PetHealthAPI.Controllers
         [HttpPost]
         public JsonResult RegisterVet(RegisterVetJsonObject json)
         {
-            Person newPerson = new Person();
-            Vet newVet = new Vet();
+            var newPerson = new Person();
+            var newVet = new Vet();
             var msg = "error";
             if (context.User.Find(json.userId) != null)
             {

@@ -29,7 +29,7 @@ namespace PetHealthAPI.Controllers
                     JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult addPet(PetJsonObject petJsonObject)
+        public JsonResult AddPet(PetJsonObject petJsonObject)
         {
             var newPet = new Pet();
             var msg = "error";
@@ -45,6 +45,7 @@ namespace PetHealthAPI.Controllers
                     {
                         newPet = context.Pet.Find(petJsonObject.petId);
                     }
+<<<<<<< HEAD
                     newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
                     newPet.Description = petJsonObject.description;
                     newPet.Key = petJsonObject.key;
@@ -52,6 +53,18 @@ namespace PetHealthAPI.Controllers
                     newPet.OwnerId = petJsonObject.ownerId;
                     newPet.race = petJsonObject.race;
                     newPet.Status = petJsonObject.status;
+=======
+                    if (newPet != null)
+                    {
+                        newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
+                        newPet.Description = petJsonObject.description;
+                        newPet.Key = petJsonObject.key;
+                        newPet.Name = petJsonObject.name;
+                        newPet.OwnerId = petJsonObject.ownerId;
+                        newPet.Race = petJsonObject.race;
+                        newPet.Status = petJsonObject.status;
+                    }
+>>>>>>> cba8dde225e1cb14e11ef3c6179e1ffff77e0d7f
                     context.SaveChanges();
                     trans.Complete();
                     msg = "success";
@@ -65,14 +78,14 @@ namespace PetHealthAPI.Controllers
             return Json(new { message=msg }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult Delete(int petId)
+        public JsonResult Delete(Int32 petId)
         {
             var msg = "error";
             var pet = context.Pet.Find(petId);
             if (pet == null) return Json(new {message = msg}, JsonRequestBehavior.AllowGet);
             using (var trans = new TransactionScope())
             {
-                context.Pet.Remove(pet);
+                context.Pet.Find(petId).Status = "INA";
                 msg = "success";
             }
             return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
