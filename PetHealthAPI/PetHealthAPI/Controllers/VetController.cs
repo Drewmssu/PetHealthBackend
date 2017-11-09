@@ -14,18 +14,32 @@ namespace PetHealthAPI.Controllers
         public JsonResult Veterinaries(Int32? veterinaryId)
         {
             var sts = "ok";
-            List<Vet> vets;
             if (veterinaryId.HasValue)
             {
-                vets = context.Contract
+                var vets = context.Contract
                     .Where(x => x.VeterinaryId == Convert.ToInt32(veterinaryId) && DateTime.Now >= x.StartDate && DateTime.Now < x.EndDate)
-                    .Select(x => x.Vet)
+                    .Select(x => x.Vet).Select(y =>new
+                    {
+                        vetid=y.Person.User.UserId,
+                        username=y.Person.User.Username,
+                        name=y.Person.Name,
+                        nrodocumento=y.Person.NroDocumento,
+                        TipoDocumento=y.Person.DocumentType.Name
+                    })
                     .ToList();
-            }else
-            {
-                vets = context.Vet.ToList();
+                return Json(new { status = sts, vets = vets }, JsonRequestBehavior.AllowGet);
+
             }
-            return Json(new { status = sts, vets=vets},JsonRequestBehavior.AllowGet);
+            else
+            {
+                var vets = context.Vet.Select(y => new
+                {
+                    vetid = y.Person.User.UserId,
+                    username = y.Person.User.Username,
+                    name = y.Person.Name
+                }).ToList();
+                return Json(new { status = sts, vets = vets }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public JsonResult Vets(Int32 vetId)

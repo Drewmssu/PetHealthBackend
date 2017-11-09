@@ -75,10 +75,13 @@ namespace PetHealthAPI.Controllers
             newPerson.PersonId = json.userId;
             newPerson.Name = json.name;
             newPerson.LastName = json.lastName;
-            newPerson.DNI = json.dni;
+            newPerson.TipoDocumentoId = json.tipodocumento;
+            newPerson.NroDocumento = json.nrodocumento;
             newPerson.Adress = json.adress;
             newPerson.Phone = json.phone;
+            newPerson.Birthdate = json.birthdate;
         }
+
 
         [HttpPost]
         public JsonResult RegisterCustomer(RegisterCustomerJsonObject json)
@@ -93,7 +96,7 @@ namespace PetHealthAPI.Controllers
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newCustomer.CustomerId = context.Person.FirstOrDefault(x=>x.DNI==json.dni).PersonId;
+                    newCustomer.CustomerId = context.Person.FirstOrDefault(x=>x.NroDocumento==json.nrodocumento).PersonId;
                     newCustomer.LastDateLogOn = DateTime.Now;
                     newCustomer.Rating = 0;
                     context.Customer.Add(newCustomer);
@@ -102,7 +105,7 @@ namespace PetHealthAPI.Controllers
                 }
                 msg = "done";
             }
-            return Json(new { status = msg, customer = newPerson }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = msg, customer = json }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -112,13 +115,13 @@ namespace PetHealthAPI.Controllers
             var newVet = new Vet();
             var msg = "error";
             if (context.User.Find(json.userId) != null)
-            {
+            {   
                 using (var trans = new TransactionScope()) 
                 {
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newVet.VetId = context.Person.FirstOrDefault(x => x.DNI == json.dni).PersonId;
+                    newVet.VetId = json.userId;
                     newVet.Linkedinlink = json.linkedinLink;
                     newVet.Degree = json.degree;
                     context.Vet.Add(newVet);
@@ -127,7 +130,7 @@ namespace PetHealthAPI.Controllers
                 }
                 msg = "done";
             }
-            return Json(new { status = msg, vet = newVet }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = msg, vet = json }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult RegisterVeterinary(RegisterVeterinaryJsonObject json)
@@ -142,15 +145,17 @@ namespace PetHealthAPI.Controllers
                     newVeterinary.Name = json.Name;
                     newVeterinary.PresentationVid = json.DescripVid;
                     newVeterinary.PhoneNumber = json.PhoneNumber;
-                    newVeterinary.Location = json.Location;
+                    newVeterinary.Latitude = json.Latitude;
+                    newVeterinary.Longitude = json.Longitude;
                     newVeterinary.OpeningHours = json.OpeningHours;
+                    newVeterinary.Rate = json.Rating;
                     context.Veterinary.Add(newVeterinary);
                     context.SaveChanges();
                     trans.Complete();
                 }
                 msg = "done";
             }
-            return Json(new { status = msg, veterinary = newVeterinary }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = msg, veterinary = json }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Pets(Int32? ownerId)
         {
@@ -172,6 +177,28 @@ namespace PetHealthAPI.Controllers
                 },
             JsonRequestBehavior.AllowGet);
             }
+        }
+        public JsonResult getUser()
+        {
+            var res = context.User.Select(x => new
+            {
+                id = x.UserId,
+                username = x.Username
+            });
+            return Json(new { res=res }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getCustomers()
+        {
+            var res = context.Customer.Select(x => new
+            {
+                id = x.CustomerId,
+                username = x.Person.User.Username,
+                name = x.Person.Name,
+                nrodocumento=x.Person.NroDocumento,
+                TipoDocumento=x.Person.DocumentType.Name,
+            });
+            return Json(new { res=res},JsonRequestBehavior.AllowGet);
         }
     }
 }

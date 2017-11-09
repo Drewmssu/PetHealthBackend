@@ -52,6 +52,8 @@ namespace PetHealthAPI.JsonObjects
                 newAppointment.PetId = Convert.ToInt32(json.petId);
                 newAppointment.VeterinaryId = json.veterinaryId;
                 newAppointment.VetId = json.vetId;
+                newAppointment.Prescription = json.prescription;
+                newAppointment.Status = json.status ;
                 context.SaveChanges();
                 trans.Complete();
             }

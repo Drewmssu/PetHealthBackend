@@ -23,6 +23,10 @@ namespace PetHealthAPI.ViewModel
         public String key { get; set; }
         [Required]
         public String status { get; set; }
+        public String photo { get; set; }
+        public Int32 animalType { get; set; }
+        //---------------NOT PART OF THE INPUT--------------------//
+        public String animalTypeName { get; set; }
         public static PetJsonObject from(Pet pet)
         {
             PetJsonObject plo = new PetJsonObject();
@@ -33,8 +37,11 @@ namespace PetHealthAPI.ViewModel
             plo.ownerId = pet.OwnerId;
             plo.key = pet.Key;
             plo.birthDate = Convert.ToString(pet.BirthDate);
-            plo.race = pet.race;
+            plo.race = pet.Race;
             plo.status = pet.Status;
+            plo.photo = pet.Photo;
+            plo.animalType = Convert.ToInt32(pet.AnimalTypeId);
+            plo.animalTypeName = pet.AnimalType.animal;
             return plo;
         }
 

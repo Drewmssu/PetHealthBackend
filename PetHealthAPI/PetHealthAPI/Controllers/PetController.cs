@@ -53,20 +53,21 @@ namespace PetHealthAPI.Controllers
                         newPet.Key = petJsonObject.key;
                         newPet.Name = petJsonObject.name;
                         newPet.OwnerId = petJsonObject.ownerId;
-                        newPet.race = petJsonObject.race;
+                        newPet.Race = petJsonObject.race;
                         newPet.Status = petJsonObject.status;
+                        newPet.Photo = petJsonObject.photo;
+                        newPet.AnimalTypeId = petJsonObject.animalType;
                     }
                     context.SaveChanges();
                     trans.Complete();
                     msg = "success";
                 }
-
             }
             catch (Exception e)
             {
                 // ignored
             }
-            return Json(new { message=msg }, JsonRequestBehavior.AllowGet);
+            return Json(new { message = msg, pet = petJsonObject }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public JsonResult Delete(Int32 petId)

@@ -20,9 +20,11 @@ namespace PetHealthAPI.ViewModel
             vjo.userId = vet.Person.User.UserId;
             vjo.name = vet.Person.Name;
             vjo.lastName = vet.Person.LastName;
-            vjo.dni = vet.Person.DNI;
+            vjo.tipodocumento = Convert.ToInt32(vet.Person.TipoDocumentoId);
+            vjo.nrodocumento = vet.Person.NroDocumento;
             vjo.adress = vet.Person.Adress;
             vjo.phone = vet.Person.Phone;
+            vjo.birthdate = Convert.ToDateTime(vet.Person.Birthdate);
             vjo.linkedinLink = vet.Linkedinlink;
             vjo.degree = vet.Degree;
             return vjo;

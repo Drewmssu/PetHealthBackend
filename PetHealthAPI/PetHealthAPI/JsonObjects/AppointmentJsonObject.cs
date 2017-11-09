@@ -15,7 +15,7 @@ namespace PetHealthAPI.JsonObjects
         public String date { get; set; }
         public String description { get; set; }
         public String prescription { get; set; }
-
+        public String status { get; set; }
         public static AppointmentJsonObject from(Appointment appointment)
         {
             AppointmentJsonObject apj = new AppointmentJsonObject();

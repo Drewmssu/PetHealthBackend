@@ -16,7 +16,7 @@ namespace PetHealthAPI.Controllers
             var sts = "ok";
             var lstTips = context.Tip.Where(c=>c.Status=="ACT").Select(c => new {
                 TipId = c.TipId,
-                OwnerId = c.OwnerId,
+                OwnerUsername = c.User.Username,
                 Content = c.Content,
                 Image = c.Image 
                 }).ToList();
@@ -45,7 +45,7 @@ namespace PetHealthAPI.Controllers
                 context.SaveChanges();
                 trans.Complete();
             }
-            return Json(new { status = sts, tip = tip }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = sts, tip = json }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteTip(Int32 tipId)
