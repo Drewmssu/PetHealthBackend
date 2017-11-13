@@ -96,7 +96,7 @@ namespace PetHealthAPI.Controllers
                     InitPerson(json, newPerson);
                     context.Person.Add(newPerson);
                     context.SaveChanges();
-                    newCustomer.CustomerId = context.Person.FirstOrDefault(x=>x.NroDocumento==json.nrodocumento).PersonId;
+                    newCustomer.CustomerId = json.userId;
                     newCustomer.LastDateLogOn = DateTime.Now;
                     newCustomer.Rating = 0;
                     context.Customer.Add(newCustomer);
@@ -188,17 +188,23 @@ namespace PetHealthAPI.Controllers
             return Json(new { res=res }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult getCustomers()
+        public JsonResult getCustomers(Int32? customerId)
         {
             var res = context.Customer.Select(x => new
             {
                 id = x.CustomerId,
                 username = x.Person.User.Username,
                 name = x.Person.Name,
+                lastname = x.Person.LastName,
+                phone = x.Person.Phone,
+                address= x.Person.Adress,
                 nrodocumento=x.Person.NroDocumento,
                 TipoDocumento=x.Person.DocumentType.Name,
             });
-            return Json(new { res=res},JsonRequestBehavior.AllowGet);
+            if (customerId.HasValue)
+                res = res.Where(x => x.id == customerId);
+            var resp = res.ToList();
+            return Json(new { res=resp},JsonRequestBehavior.AllowGet);
         }
     }
 }
