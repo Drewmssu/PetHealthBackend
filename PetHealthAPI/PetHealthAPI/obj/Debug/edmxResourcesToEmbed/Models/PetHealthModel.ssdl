@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PetHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AnimalType">
+    <Key>
+      <PropertyRef Name="AnimalType" />
+    </Key>
+    <Property Name="AnimalType" Type="int" Nullable="false" />
+    <Property Name="animal" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
   <EntityType Name="Appointment">
     <Key>
       <PropertyRef Name="AppointmentId" />
@@ -11,6 +19,7 @@
     <Property Name="AppointmentDate" Type="datetime" Nullable="false" />
     <Property Name="Description" Type="varchar(max)" Nullable="false" />
     <Property Name="Prescription" Type="varchar(max)" />
+    <Property Name="Status" Type="varchar" MaxLength="3" />
   </EntityType>
   <EntityType Name="Channel">
     <Key>
@@ -19,13 +28,6 @@
     <Property Name="ChanelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CustomerId" Type="int" Nullable="false" />
     <Property Name="VetId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ClinicalHistory">
-    <Key>
-      <PropertyRef Name="ClinicalHistoryId" />
-    </Key>
-    <Property Name="ClinicalHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PetId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Contract">
     <Key>
@@ -36,6 +38,7 @@
     <Property Name="VeterinaryId" Type="int" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="3" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -45,6 +48,15 @@
     <Property Name="Rating" Type="int" Nullable="false" />
     <Property Name="LastDateLogOn" Type="date" Nullable="false" />
   </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeId" />
+    </Key>
+    <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Abreviation" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
   <EntityType Name="LocationPhoto">
     <Key>
       <PropertyRef Name="LocationPhotoId" />
@@ -52,6 +64,7 @@
     <Property Name="LocationPhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Photo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="VeterinaryId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="3" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -70,9 +83,11 @@
     <Property Name="PersonId" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="DNI" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TipoDocumentoId" Type="int" />
+    <Property Name="Birthdate" Type="date" />
+    <Property Name="NroDocumento" Type="varchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="Pet">
     <Key>
@@ -85,7 +100,9 @@
     <Property Name="Key" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Status" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="BirthDate" Type="datetime" Nullable="false" />
-    <Property Name="race" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Race" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Photo" Type="varchar" MaxLength="200" />
+    <Property Name="AnimalTypeId" Type="int" />
   </EntityType>
   <EntityType Name="SocialURL">
     <Key>
@@ -134,7 +151,7 @@
     <Key>
       <PropertyRef Name="VetId" />
     </Key>
-    <Property Name="VetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VetId" Type="int" Nullable="false" />
     <Property Name="Linkedinlink" Type="varchar" MaxLength="100" />
     <Property Name="Degree" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
@@ -142,26 +159,16 @@
     <Key>
       <PropertyRef Name="VeterinaryId" />
     </Key>
-    <Property Name="VeterinaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VeterinaryId" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="PresentationVid" Type="varchar" MaxLength="100" />
     <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="OpeningHours" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="SocialURLId" Type="int" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="7" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="7" />
   </EntityType>
-  <Association Name="FK_Appointment_ClinicalHistory">
-    <End Role="ClinicalHistory" Type="Self.ClinicalHistory" Multiplicity="1" />
-    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ClinicalHistory">
-        <PropertyRef Name="ClinicalHistoryId" />
-      </Principal>
-      <Dependent Role="Appointment">
-        <PropertyRef Name="PetId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Appointment_Pet">
     <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
     <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
@@ -219,18 +226,6 @@
       </Principal>
       <Dependent Role="Channel">
         <PropertyRef Name="VetId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ClinicalHistory_Pet">
-    <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
-    <End Role="ClinicalHistory" Type="Self.ClinicalHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pet">
-        <PropertyRef Name="PetId" />
-      </Principal>
-      <Dependent Role="ClinicalHistory">
-        <PropertyRef Name="PetId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -294,6 +289,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Person_TipoDocumento">
+    <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentType">
+        <PropertyRef Name="DocumentTypeId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="TipoDocumentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Person_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
@@ -303,6 +310,18 @@
       </Principal>
       <Dependent Role="Person">
         <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_AnimalType">
+    <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="0..1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnimalType">
+        <PropertyRef Name="AnimalType" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="AnimalTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -367,11 +386,12 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="PetHealthModelStoreContainer">
+    <EntitySet Name="AnimalType" EntityType="Self.AnimalType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Channel" EntityType="Self.Channel" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ClinicalHistory" EntityType="Self.ClinicalHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocationPhoto" EntityType="Self.LocationPhoto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
@@ -382,10 +402,6 @@
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vet" EntityType="Self.Vet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Veterinary" EntityType="Self.Veterinary" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Appointment_ClinicalHistory" Association="Self.FK_Appointment_ClinicalHistory">
-      <End Role="ClinicalHistory" EntitySet="ClinicalHistory" />
-      <End Role="Appointment" EntitySet="Appointment" />
-    </AssociationSet>
     <AssociationSet Name="FK_Appointment_Pet" Association="Self.FK_Appointment_Pet">
       <End Role="Pet" EntitySet="Pet" />
       <End Role="Appointment" EntitySet="Appointment" />
@@ -405,10 +421,6 @@
     <AssociationSet Name="FK_Channel_User1" Association="Self.FK_Channel_User1">
       <End Role="User" EntitySet="User" />
       <End Role="Channel" EntitySet="Channel" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ClinicalHistory_Pet" Association="Self.FK_ClinicalHistory_Pet">
-      <End Role="Pet" EntitySet="Pet" />
-      <End Role="ClinicalHistory" EntitySet="ClinicalHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_Contract_Vet" Association="Self.FK_Contract_Vet">
       <End Role="Vet" EntitySet="Vet" />
@@ -430,9 +442,17 @@
       <End Role="Channel" EntitySet="Channel" />
       <End Role="Message" EntitySet="Message" />
     </AssociationSet>
+    <AssociationSet Name="FK_Person_TipoDocumento" Association="Self.FK_Person_TipoDocumento">
+      <End Role="DocumentType" EntitySet="DocumentType" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
     <AssociationSet Name="FK_Person_User" Association="Self.FK_Person_User">
       <End Role="User" EntitySet="User" />
       <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_AnimalType" Association="Self.FK_Pet_AnimalType">
+      <End Role="AnimalType" EntitySet="AnimalType" />
+      <End Role="Pet" EntitySet="Pet" />
     </AssociationSet>
     <AssociationSet Name="FK_Pet_Customer" Association="Self.FK_Pet_Customer">
       <End Role="Customer" EntitySet="Customer" />

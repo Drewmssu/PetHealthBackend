@@ -26,9 +26,11 @@ namespace PetHealthAPI.Models
         public string Name { get; set; }
         public string PresentationVid { get; set; }
         public string PhoneNumber { get; set; }
-        public string Location { get; set; }
         public string OpeningHours { get; set; }
         public Nullable<int> SocialURLId { get; set; }
+        public Nullable<decimal> Rate { get; set; }
+        public Nullable<decimal> Latitude { get; set; }
+        public Nullable<decimal> Longitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }

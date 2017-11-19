@@ -172,6 +172,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DocumentTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TipController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -186,19 +187,22 @@
     <Compile Include="JsonObjects\AppointmentJsonObject.cs" />
     <Compile Include="JsonObjects\RegisterVeterinaryJsonObject.cs" />
     <Compile Include="JsonObjects\TipJsonObject.cs" />
+    <Compile Include="Models\AnimalType.cs">
+      <DependentUpon>PetHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Appointment.cs">
       <DependentUpon>PetHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Channel.cs">
       <DependentUpon>PetHealthModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClinicalHistory.cs">
-      <DependentUpon>PetHealthModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Contract.cs">
       <DependentUpon>PetHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
+      <DependentUpon>PetHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentType.cs">
       <DependentUpon>PetHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocationPhoto.cs">

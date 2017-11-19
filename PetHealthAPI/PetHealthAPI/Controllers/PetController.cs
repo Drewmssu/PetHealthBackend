@@ -37,26 +37,26 @@ namespace PetHealthAPI.Controllers
             {
                 using (var trans = new TransactionScope())
                 {
-                    if (petJsonObject.petId == null)
+                   if (petJsonObject.petId == null)
                     {
                         context.Pet.Add(newPet);
                     }
                     else
                     {
-                        newPet = context.Pet.Find(petJsonObject.petId);
-                        
+                        newPet = context.Pet.Find(petJsonObject.petId);   
                     }
                     if (newPet != null)
                     {
                         newPet.BirthDate = Convert.ToDateTime(petJsonObject.birthDate);
                         newPet.Description = petJsonObject.description;
-                        newPet.Key = petJsonObject.key;
+                        newPet.Key = "PLy7bNfZlD";
                         newPet.Name = petJsonObject.name;
                         newPet.OwnerId = petJsonObject.ownerId;
                         newPet.Race = petJsonObject.race;
-                        newPet.Status = petJsonObject.status;
-                        newPet.Photo = petJsonObject.photo;
-                        newPet.AnimalTypeId = petJsonObject.animalType;
+                        newPet.Status = "ACT";
+                        newPet.Photo = "http://lorempixel.com/640/480/animals";
+                        newPet.AnimalTypeId = petJsonObject.animalType;   
+                                    
                     }
                     context.SaveChanges();
                     trans.Complete();

@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="PetHealthModelStoreContainer" CdmEntityContainer="PetHealthEntities">
+    <EntitySetMapping Name="AnimalType">
+      <EntityTypeMapping TypeName="PetHealthModel.AnimalType">
+        <MappingFragment StoreEntitySet="AnimalType">
+          <ScalarProperty Name="AnimalType1" ColumnName="AnimalType" />
+          <ScalarProperty Name="animal" ColumnName="animal" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Appointment">
       <EntityTypeMapping TypeName="PetHealthModel.Appointment">
         <MappingFragment StoreEntitySet="Appointment">
@@ -11,6 +20,7 @@
           <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -23,14 +33,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ClinicalHistory">
-      <EntityTypeMapping TypeName="PetHealthModel.ClinicalHistory">
-        <MappingFragment StoreEntitySet="ClinicalHistory">
-          <ScalarProperty Name="ClinicalHistoryId" ColumnName="ClinicalHistoryId" />
-          <ScalarProperty Name="PetId" ColumnName="PetId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Contract">
       <EntityTypeMapping TypeName="PetHealthModel.Contract">
         <MappingFragment StoreEntitySet="Contract">
@@ -39,6 +41,7 @@
           <ScalarProperty Name="VeterinaryId" ColumnName="VeterinaryId" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -51,12 +54,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DocumentType">
+      <EntityTypeMapping TypeName="PetHealthModel.DocumentType">
+        <MappingFragment StoreEntitySet="DocumentType">
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Abreviation" ColumnName="Abreviation" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="LocationPhoto">
       <EntityTypeMapping TypeName="PetHealthModel.LocationPhoto">
         <MappingFragment StoreEntitySet="LocationPhoto">
           <ScalarProperty Name="LocationPhotoId" ColumnName="LocationPhotoId" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
           <ScalarProperty Name="VeterinaryId" ColumnName="VeterinaryId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -77,9 +91,11 @@
           <ScalarProperty Name="PersonId" ColumnName="PersonId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="DNI" ColumnName="DNI" />
           <ScalarProperty Name="Adress" ColumnName="Adress" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="TipoDocumentoId" ColumnName="TipoDocumentoId" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="NroDocumento" ColumnName="NroDocumento" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -93,7 +109,9 @@
           <ScalarProperty Name="Key" ColumnName="Key" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-          <ScalarProperty Name="race" ColumnName="race" />
+          <ScalarProperty Name="Race" ColumnName="Race" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="AnimalTypeId" ColumnName="AnimalTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -160,9 +178,11 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="PresentationVid" ColumnName="PresentationVid" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="OpeningHours" ColumnName="OpeningHours" />
           <ScalarProperty Name="SocialURLId" ColumnName="SocialURLId" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

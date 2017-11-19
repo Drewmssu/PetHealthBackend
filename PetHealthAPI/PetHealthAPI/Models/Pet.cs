@@ -18,7 +18,6 @@ namespace PetHealthAPI.Models
         public Pet()
         {
             this.Appointment = new HashSet<Appointment>();
-            this.ClinicalHistory = new HashSet<ClinicalHistory>();
         }
     
         public int PetId { get; set; }
@@ -28,12 +27,13 @@ namespace PetHealthAPI.Models
         public string Key { get; set; }
         public string Status { get; set; }
         public System.DateTime BirthDate { get; set; }
-        public string race { get; set; }
+        public string Race { get; set; }
+        public string Photo { get; set; }
+        public Nullable<int> AnimalTypeId { get; set; }
     
+        public virtual AnimalType AnimalType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClinicalHistory> ClinicalHistory { get; set; }
         public virtual Customer Customer { get; set; }
     }
 }

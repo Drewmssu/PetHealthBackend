@@ -25,11 +25,12 @@ namespace PetHealthAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AnimalType> AnimalType { get; set; }
         public virtual DbSet<Appointment> Appointment { get; set; }
         public virtual DbSet<Channel> Channel { get; set; }
-        public virtual DbSet<ClinicalHistory> ClinicalHistory { get; set; }
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<DocumentType> DocumentType { get; set; }
         public virtual DbSet<LocationPhoto> LocationPhoto { get; set; }
         public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Person> Person { get; set; }

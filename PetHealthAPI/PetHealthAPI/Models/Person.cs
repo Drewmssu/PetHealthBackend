@@ -17,11 +17,14 @@ namespace PetHealthAPI.Models
         public int PersonId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
-        public string DNI { get; set; }
         public string Adress { get; set; }
         public string Phone { get; set; }
+        public Nullable<int> TipoDocumentoId { get; set; }
+        public Nullable<System.DateTime> Birthdate { get; set; }
+        public string NroDocumento { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual DocumentType DocumentType { get; set; }
         public virtual User User { get; set; }
         public virtual Vet Vet { get; set; }
     }

@@ -17,6 +17,7 @@ namespace PetHealthAPI.Models
         public int LocationPhotoId { get; set; }
         public string Photo { get; set; }
         public int VeterinaryId { get; set; }
+        public string Status { get; set; }
     
         public virtual Veterinary Veterinary { get; set; }
     }

@@ -21,8 +21,8 @@ namespace PetHealthAPI.Models
         public System.DateTime AppointmentDate { get; set; }
         public string Description { get; set; }
         public string Prescription { get; set; }
+        public string Status { get; set; }
     
-        public virtual ClinicalHistory ClinicalHistory { get; set; }
         public virtual Pet Pet { get; set; }
         public virtual Vet Vet { get; set; }
         public virtual Veterinary Veterinary { get; set; }

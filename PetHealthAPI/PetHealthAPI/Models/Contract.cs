@@ -19,6 +19,7 @@ namespace PetHealthAPI.Models
         public int VeterinaryId { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
+        public string Status { get; set; }
     
         public virtual Vet Vet { get; set; }
         public virtual Veterinary Veterinary { get; set; }
