@@ -16,6 +16,12 @@ namespace PetHealthAPI.JsonObjects
         public String description { get; set; }
         public String prescription { get; set; }
         public String status { get; set; }
+
+        /**NOT FOR INPUT**/
+
+        public String vet { get; set; }
+        public String pet { get; set; }
+        public String veterinary { get; set; }
         public static AppointmentJsonObject from(Appointment appointment)
         {
             AppointmentJsonObject apj = new AppointmentJsonObject();
@@ -26,6 +32,9 @@ namespace PetHealthAPI.JsonObjects
             apj.date = appointment.AppointmentDate.ToString();
             apj.description = appointment.Description;
             apj.prescription = appointment.Prescription;
+            apj.vet = appointment.Vet.Person.Name + " " + appointment.Vet.Person.LastName;
+            apj.veterinary = appointment.Veterinary.Name;
+            apj.pet = appointment.Pet.Name; 
             return apj;
         }
 
