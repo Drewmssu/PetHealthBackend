@@ -199,7 +199,9 @@ namespace PetHealthAPI.Controllers
                 phone = x.Person.Phone,
                 address= x.Person.Adress,
                 nrodocumento=x.Person.NroDocumento,
-                TipoDocumento=x.Person.DocumentType.Name,
+                tipodocumento=x.Person.DocumentType.Name,
+                tipodocumentoId= x.Person.TipoDocumentoId,
+                birthdate=x.Person.Birthdate
             });
             if (customerId.HasValue)
                 res = res.Where(x => x.id == customerId);
