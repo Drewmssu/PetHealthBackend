@@ -201,7 +201,7 @@ namespace PetHealthAPI.Controllers
                 nrodocumento=x.Person.NroDocumento,
                 tipodocumento=x.Person.DocumentType.Name,
                 tipodocumentoId= x.Person.TipoDocumentoId,
-                birthdate=x.Person.Birthdate
+                birthdate=x.Person.Birthdate.ToString()
             });
             if (customerId.HasValue)
                 res = res.Where(x => x.id == customerId);
