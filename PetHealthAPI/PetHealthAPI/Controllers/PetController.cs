@@ -31,6 +31,7 @@ namespace PetHealthAPI.Controllers
         [HttpPost]
         public JsonResult AddPet(PetJsonObject petJsonObject)
         {
+            var actualdate = petJsonObject.birthDate.Replace(@"\", string.Empty);
             var newPet = new Pet();
             var msg = "error";
             try
