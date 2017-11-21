@@ -34,9 +34,11 @@ namespace PetHealthAPI.JsonObjects
             }
             //return Json(appointmentId.HasValue ? AppointmentJsonObject.@from(context.Appointment.Where(x => x.AppointmentId == appointmentId).ToList()) : AppointmentJsonObject.@from(context.Appointment.ToList()), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
         public JsonResult AddAppointments(AppointmentJsonObject json)
         {
             var status = "ok";
+            var actualdate = json.date.Replace(@"\", string.Empty);
             Appointment newAppointment = new Appointment();
             if (json.appointmentId.HasValue)
             {
@@ -47,7 +49,7 @@ namespace PetHealthAPI.JsonObjects
             }
             using(var trans=new TransactionScope())
             {
-                newAppointment.AppointmentDate = Convert.ToDateTime(json.date);
+                newAppointment.AppointmentDate = Convert.ToDateTime(actualdate);
                 newAppointment.Description = json.description;
                 newAppointment.PetId = Convert.ToInt32(json.petId);
                 newAppointment.VeterinaryId = json.veterinaryId;
