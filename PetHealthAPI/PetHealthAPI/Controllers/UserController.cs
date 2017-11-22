@@ -196,23 +196,9 @@ namespace PetHealthAPI.Controllers
 
         public JsonResult getCustomers(Int32? customerId)
         {
-            var res = context.Customer.Select(x => new
-            {
-                id = x.CustomerId,
-                username = x.Person.User.Username,
-                name = x.Person.Name,
-                lastname = x.Person.LastName,
-                phone = x.Person.Phone,
-                address= x.Person.Adress,
-                nrodocumento=x.Person.NroDocumento,
-                tipodocumento=x.Person.DocumentType.Name,
-                tipodocumentoId= x.Person.TipoDocumentoId,
-                birthdate=x.Person.Birthdate.ToString()
-            });
-            if (customerId.HasValue)
-                res = res.Where(x => x.id == customerId);
-            var resp = res.ToList();
-            return Json(new { res=resp},JsonRequestBehavior.AllowGet);
+            
+            var list = CustomerJson.from(context.Customer.ToList());
+            return Json(new { res = list }, JsonRequestBehavior.AllowGet);
         }
     }
 }
