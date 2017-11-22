@@ -90,16 +90,22 @@ namespace PetHealthAPI.Controllers
             var newCustomer = new Customer();
             var msg = "error";
             if (context.User.Find(json.userId) != null) 
-            {
+            {        
                 using(var trans = new TransactionScope())
-                {
-                    InitPerson(json, newPerson);
-                    context.Person.Add(newPerson);
+                {                                    
+                    if (context.Person.Find(json.userId) != null)
+                        newPerson = context.Person.Find(json.userId);
+                    else
+                        context.Person.Add(newPerson);
+                    InitPerson(json, newPerson);                  
                     context.SaveChanges();
+                    if (context.Customer.Find(json.userId) != null)
+                        newCustomer = context.Customer.Find(json.userId);
+                    else
+                        context.Customer.Add(newCustomer);
                     newCustomer.CustomerId = json.userId;
                     newCustomer.LastDateLogOn = DateTime.Now;
                     newCustomer.Rating = 0;
-                    context.Customer.Add(newCustomer);
                     context.SaveChanges();
                     trans.Complete();
                 }

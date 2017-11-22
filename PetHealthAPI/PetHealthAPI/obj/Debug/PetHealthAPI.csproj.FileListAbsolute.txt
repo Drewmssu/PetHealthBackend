@@ -286,4 +286,3 @@ C:\Development\App Moviles\Backend\PetHealthBackend\PetHealthAPI\PetHealthAPI\ob
 C:\Development\App Moviles\Backend\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.csproj.GenerateResource.Cache
 C:\Development\App Moviles\Backend\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.dll
 C:\Development\App Moviles\Backend\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.pdb
-C:\Development\App Moviles\Backend\PetHealthBackend\PetHealthAPI\PetHealthAPI\obj\Debug\PetHealthAPI.csprojResolveAssemblyReference.cache
