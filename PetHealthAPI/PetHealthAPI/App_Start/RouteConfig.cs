@@ -50,6 +50,18 @@ namespace PetHealthAPI
                 defaults: new { controller = "User", action = "RegisterVeterinary" }
             );
 
+            routes.MapRoute(
+                name: "Customers2",
+                url: "customers",
+                defaults: new { controller = "User", action = "getCustomers" }
+            );
+
+            routes.MapRoute(
+                name: "Customers",
+                url: "customers/{customerId}",
+                defaults: new { controller = "User", action = "getCustomers" }
+            );
+
             //returns pets
             routes.MapRoute(
                 name: "UserPets",
@@ -63,13 +75,7 @@ namespace PetHealthAPI
                 url: "users",
                 defaults: new { controller = "User", action = "getUser" }
             );
-
-            //returns user
-            routes.MapRoute(
-                name: "Customers",
-                url: "customers",
-                defaults: new { controller = "User", action = "getCustomers" }
-            );
+            
             //-------------------- PET CONTROLLER --------------------------//
 
             //return pets
@@ -140,7 +146,7 @@ namespace PetHealthAPI
             //appointments (petsid if needed)
             routes.MapRoute(
                 name: "PetsAppointment",
-                url: "pets/appointments",
+                url: "pets/appointments/{petId}",
                 defaults: new { controller = "Appointment", action = "Appointments" }
             );
 
